@@ -1,11 +1,18 @@
 <template>
-  <div>index</div>
-  <div>
-    <van-button plain type="primary">朴素按钮</van-button>
-    <van-button plain type="success">朴素按钮</van-button>
-  </div>
+  <div class="test">index</div>
+  <div class="test-viewport">测试转换</div>
+  <van-button loading type="success" loading-text="加载中..." />
 </template>
 
 <script setup></script>
 
-<style scoped></style>
+<style scoped>
+.test-viewport {
+  width: 375px;
+  height: 100px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 100px;
+  background: #13b5b1;
+}
+</style>
