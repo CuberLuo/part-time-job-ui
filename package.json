@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "echarts": "^5.4.0",
     "pinia": "^2.0.23",
     "validator": "^13.7.0",
     "vant": "^4.0.0-rc.6",
