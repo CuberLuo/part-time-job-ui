@@ -29,6 +29,8 @@ module.exports = {
       {
         ignores: ['index'] // 需要忽略的组件名
       }
-    ]
+    ],
+    // 关闭导入组件未使用报错问题
+    'no-unused-vars': 'off'
   }
 }

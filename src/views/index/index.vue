@@ -1,18 +1,15 @@
 <template>
-  <div class="test">index</div>
-  <div class="test-viewport">测试转换</div>
-  <van-button loading type="success" loading-text="加载中..." />
+  <div>
+    <!-- <van-button type="primary" @click="router.push('/login')">登录</van-button>
+    <van-button plain type="primary" @click="router.push('/register')"
+      >注册</van-button
+    > -->
+    index
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import router from '@/router'
+</script>
 
-<style scoped>
-.test-viewport {
-  width: 375px;
-  height: 100px;
-  font-size: 40px;
-  text-align: center;
-  line-height: 100px;
-  background: #13b5b1;
-}
-</style>
+<style scoped></style>
