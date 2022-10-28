@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+# Happy Part Time Job -- 大学生兼职平台(移动端网页前端)
+## 技术栈
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+- Vue3.2
+- Vant4
+- Pinia
+- Echarts
+- Vite
 
-## Recommended IDE Setup
+## 前端项目运行
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+### 安装项目依赖
+
+```
+yarn install
+```
+
+### 编译并热加载开发环境下的项目
+
+```
+yarn run dev
+```
+
+### 编译并打包生产环境下的项目
+
+```
+yarn run build
+```
