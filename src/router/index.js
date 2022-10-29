@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
+import { $t } from '@/i18n'
 const routes = [
   {
     path: '/',
@@ -7,22 +7,22 @@ const routes = [
   },
   {
     path: '/index',
-    meta: { title: '首页' },
+    meta: { title: $t('tabbar.index') },
     component: () => import('@/views/index/index.vue')
   },
   {
     path: '/job_square',
-    meta: { title: '兼职广场' },
+    meta: { title: $t('tabbar.job_square') },
     component: () => import('@/views/job_square/index.vue')
   },
   {
     path: '/message',
-    meta: { title: '消息' },
+    meta: { title: $t('tabbar.message') },
     component: () => import('@/views/message/index.vue')
   },
   {
     path: '/me',
-    meta: { title: '我的' },
+    meta: { title: $t('tabbar.me') },
     component: () => import('@/views/me/index.vue')
   },
   {
@@ -47,5 +47,6 @@ router.afterEach((to, from) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
+  // console.log(to.path)
 })
 export default router

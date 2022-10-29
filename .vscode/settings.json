@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["tabbar"]
+  "cSpell.words": ["pinia", "tabbar"],
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src"
+  }
 }

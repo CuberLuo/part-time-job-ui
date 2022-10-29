@@ -31,6 +31,7 @@ module.exports = {
       }
     ],
     // 关闭导入组件未使用报错问题
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'spaced-comment': 'off'
   }
 }

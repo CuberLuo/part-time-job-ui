@@ -1,4 +1,5 @@
 # Happy Part Time Job -- 大学生兼职平台(移动端网页前端)
+
 ## 技术栈
 
 - Vue3.2
@@ -6,6 +7,7 @@
 - Pinia
 - Echarts
 - Vite
+- vue-i18n
 
 ## 前端项目运行
 
