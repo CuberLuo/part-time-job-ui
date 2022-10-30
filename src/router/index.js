@@ -11,6 +11,11 @@ const routes = [
     component: () => import('@/views/index/index.vue')
   },
   {
+    path: '/error',
+    meta: { title: 'error' },
+    component: () => import('@/views/error/index.vue')
+  },
+  {
     path: '/job_square',
     meta: { title: $t('tabbar.job_square') },
     component: () => import('@/views/job_square/index.vue')

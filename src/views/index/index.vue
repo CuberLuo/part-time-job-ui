@@ -10,8 +10,6 @@
 
 <script setup>
 import router from '@/router'
-import { i18n } from '@/i18n'
-console.log(i18n)
 </script>
 
 <style scoped></style>

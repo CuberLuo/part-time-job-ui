@@ -32,6 +32,11 @@ module.exports = {
     ],
     // 关闭导入组件未使用报错问题
     'no-unused-vars': 'off',
-    'spaced-comment': 'off'
+    //关闭要求双斜线后面有空格的规则
+    'spaced-comment': 'off',
+    //关闭不允许三目运算符返回Boolean值的规则
+    'no-unneeded-ternary': 'off',
+    //关闭强制要求使用===或!==的规则
+    eqeqeq: ['off']
   }
 }

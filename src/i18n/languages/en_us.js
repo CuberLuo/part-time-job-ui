@@ -1,6 +1,7 @@
 export default {
   user: {
-    language: 'Language'
+    language: 'Language',
+    themeMode: 'Theme Mode'
   },
   tabbar: {
     index: 'Home',
