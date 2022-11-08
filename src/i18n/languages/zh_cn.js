@@ -1,7 +1,10 @@
 export default {
   user: {
+    login: '登录',
+    register: '注册',
     language: '语言',
-    themeMode: '主题模式'
+    themeMode: '主题模式',
+    myCv: '我的简历'
   },
   tabbar: {
     index: '首页',

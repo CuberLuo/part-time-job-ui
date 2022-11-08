@@ -1,7 +1,9 @@
 <template>
   <van-config-provider :theme="theme">
     <!-- <NavBar :title="route.meta.title || ''"></NavBar> -->
+
     <router-view />
+
     <van-tabbar v-model="active">
       <van-tabbar-item name="index" to="/index" icon="home-o">{{
         $t('tabbar.index')

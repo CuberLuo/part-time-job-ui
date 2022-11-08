@@ -14,9 +14,28 @@
 <script setup>
 import { onMounted } from 'vue'
 import router from '@/router'
-import * as echarts from 'echarts'
+import * as echarts from 'echarts/core'
+import {
+  ToolboxComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent
+} from 'echarts/components'
+import { BarChart, LineChart } from 'echarts/charts'
+import { UniversalTransition } from 'echarts/features'
+import { CanvasRenderer } from 'echarts/renderers'
 
 onMounted(() => {
+  echarts.use([
+    ToolboxComponent,
+    TooltipComponent,
+    GridComponent,
+    LegendComponent,
+    BarChart,
+    LineChart,
+    CanvasRenderer,
+    UniversalTransition
+  ])
   // 基于准备好的dom，初始化echarts实例
   const myChart = echarts.init(document.getElementById('main'))
   // 监听图表容器的大小并改变图表大小

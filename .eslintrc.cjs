@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     semi: [2, 'never'], // 禁止尾部使用分号“ ; ”
     'no-var': 'error', // 禁止使用 var
-    indent: ['error', 2], // 缩进2格
+    indent: 0, // 取消缩进检测
     'no-mixed-spaces-and-tabs': 'error', // 不能空格与tab混用
     quotes: [2, 'single'], // 使用单引号
     // 关闭函数名与括号之间要求存在空格的问题

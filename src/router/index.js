@@ -32,13 +32,18 @@ const routes = [
   },
   {
     path: '/register',
-    meta: { title: '注册' },
+    meta: { title: $t('user.register') },
     component: () => import('@/views/register/index.vue')
   },
   {
     path: '/login',
-    meta: { title: '登录' },
+    meta: { title: $t('user.login') },
     component: () => import('@/views/login/index.vue')
+  },
+  {
+    path: '/cv',
+    meta: { title: $t('user.myCv') },
+    component: () => import('@/views/cv/index.vue')
   }
 ]
 

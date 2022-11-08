@@ -1,7 +1,10 @@
 export default {
   user: {
+    login: 'login',
+    register: 'register',
     language: 'Language',
-    themeMode: 'Theme Mode'
+    themeMode: 'Theme Mode',
+    myCv: 'my curriculum vitae'
   },
   tabbar: {
     index: 'Home',
