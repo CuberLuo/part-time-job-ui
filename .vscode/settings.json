@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["iconfont", "micromessenger", "pinia", "tabbar"],
+  "cSpell.words": ["echarts", "iconfont", "micromessenger", "pinia", "tabbar"],
   "path-intellisense.mappings": {
     "@": "${workspaceRoot}/src"
   }

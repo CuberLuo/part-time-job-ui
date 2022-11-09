@@ -1,5 +1,5 @@
 <template>
-  <NavBar :title="$t('user.register')"></NavBar>
+  <NavBar :title="$t('user.myCollect')"></NavBar>
 </template>
 
 <script setup>

@@ -26,7 +26,6 @@ const actions = [
 ]
 const i18n = useI18n()
 const currentLang = ref(i18n.locale.value === 'zh' ? '简体中文' : 'English')
-// console.log(i18n.locale.value)
 const store = useLanguageStore()
 const onOpen = () => {
   if (i18n.locale.value === 'zh') {
