@@ -20,7 +20,6 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const { path } = route // 当前路由的路径path
-console.log(path)
 
 const active = ref(path.replace('/', ''))
 </script>
