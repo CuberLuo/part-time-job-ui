@@ -20,24 +20,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      cards: []
-    }
-  },
-  methods: {
-
-  },
-  created () {
-    this.cards = [
-      { id: 1, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] },
-      { id: 2, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] },
-      { id: 2, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] }
-    ]
-  }
-}
+<script setup>
+const cards = [
+  { id: 1, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] },
+  { id: 2, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] },
+  { id: 2, price: '800~1000元', content: '问卷调查', labels: ['热门推荐', '官方渠道', '额外补贴'] }
+]
 </script>
 <style>
   .mycards{
