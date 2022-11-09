@@ -10,9 +10,12 @@
 
 <script setup>
 import { ref } from 'vue'
+const getImageUrl = (name) => {
+  return new URL(`../../../assets/images/${name}`, import.meta.url).href
+}
 const bannerList = ref([
-  { id: 1, img: '/src/assets/images/banner/banner1.jpg' },
-  { id: 2, img: '/src/assets/images/banner/banner2.jpg' }
+  { id: 1, img: getImageUrl('banner/banner1.jpg') },
+  { id: 2, img: getImageUrl('banner/banner2.jpg') }
 ])
 </script>
 
