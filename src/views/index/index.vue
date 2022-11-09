@@ -1,19 +1,14 @@
 <template>
   <div>
-    <div>
-      <!-- <van-button type="primary" @click="router.push('/login')">登录</van-button>
-    <van-button plain type="primary" @click="router.push('/register')"
-      >注册</van-button
-    > -->
-      index
-    </div>
-    <div id="main"></div>
+    <h1>&ensp;首页</h1>
   </div>
+  <bannerShow></bannerShow>
+  <div id="main"></div>
 </template>
 
 <script setup>
+import bannerShow from './components/bannerShow.vue'
 import { onMounted } from 'vue'
-import router from '@/router'
 import * as echarts from 'echarts/core'
 import {
   ToolboxComponent,
