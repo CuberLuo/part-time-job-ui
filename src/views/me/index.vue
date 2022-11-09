@@ -7,15 +7,21 @@
       </div>
     </router-link>
   </div>
-  <myCv></myCv>
-  <langSelect></langSelect>
-  <themeMode></themeMode>
+
+  <JobInfo></JobInfo>
+  <MyCv></MyCv>
+  <MyCollect></MyCollect>
+  <LangSelect></LangSelect>
+  <ThemeMode></ThemeMode>
 </template>
 
 <script setup>
-import langSelect from './components/langSelect.vue'
-import themeMode from './components/themeMode.vue'
-import myCv from './components/myCv.vue'
+import LangSelect from './components/LangSelect.vue'
+import ThemeMode from './components/ThemeMode.vue'
+import MyCv from './components/MyCv.vue'
+import MyCollect from './components/MyCollect.vue'
+import JobInfo from './components/JobInfo.vue'
+
 const getImageUrl = (name) => {
   return new URL(`../../assets/images/${name}`, import.meta.url).href
 }
@@ -46,5 +52,9 @@ const getImageUrl = (name) => {
 a {
   text-decoration: none;
   color: black;
+}
+.user-tips-img {
+  width: 100%;
+  margin-top: 30px;
 }
 </style>

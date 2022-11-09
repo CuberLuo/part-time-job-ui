@@ -4,7 +4,8 @@ export default {
     register: 'Register',
     language: 'Language',
     themeMode: 'Theme Mode',
-    myCv: 'My curriculum vitae'
+    myCv: 'My curriculum vitae',
+    myCollect: 'My collect'
   },
   tabbar: {
     index: 'Home',
@@ -16,5 +17,18 @@ export default {
     confirmDelete: 'Are you sure you want to delete it?',
     confirm: 'Confirm',
     cancel: 'Cancel'
+  },
+  cvPage: {
+    cvRate: 'resume rate',
+    cvTips1: 'Perfect resume, ',
+    cvTips2: 'higher acceptance rate!',
+    personalInfo: 'personal information',
+    eduExp: 'education experience',
+    skillCert: 'skill certificate',
+    contactInfo: 'contact information',
+    missing: 'missing'
+  },
+  message: {
+    official: 'official'
   }
 }

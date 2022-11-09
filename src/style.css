@@ -10,4 +10,10 @@ body {
 
 html:root {
   --van-switch-node-background: var(--van-white);
+  --van-circle-size: 140px;
+}
+
+.van-cell__title,
+.van-cell__value {
+  flex: auto;
 }
