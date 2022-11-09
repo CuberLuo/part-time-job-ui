@@ -11,5 +11,10 @@ export default {
     job_square: 'Part-time square',
     message: 'Messages',
     me: 'Me'
+  },
+  dialog: {
+    confirmDelete: 'Are you sure you want to delete it?',
+    confirm: 'Confirm',
+    cancel: 'Cancel'
   }
 }

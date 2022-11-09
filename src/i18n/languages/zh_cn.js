@@ -11,5 +11,10 @@ export default {
     job_square: '兼职广场',
     message: '消息',
     me: '我的'
+  },
+  dialog: {
+    confirmDelete: '确定删除吗？',
+    confirm: '确认',
+    cancel: '取消'
   }
 }

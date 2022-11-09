@@ -48,6 +48,7 @@
 import { ref } from 'vue'
 import { showConfirmDialog } from 'vant'
 import 'vant/es/dialog/style'
+import { $t } from '@/i18n'
 const contact = ref([
   {
     avatar_src:
@@ -84,7 +85,9 @@ const stickCell = (index) => {
 }
 const deleteCell = (index) => {
   showConfirmDialog({
-    title: '确定删除吗？'
+    title: $t('dialog.confirmDelete'),
+    confirmButtonText: $t('dialog.confirm'),
+    cancelButtonText: $t('dialog.cancel')
   }).then(() => {
     swipeCell.value[index].close()
     contact.value.splice(index, 1)

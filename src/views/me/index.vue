@@ -1,7 +1,9 @@
 <template>
   <div class="user-box">
     <van-image round class="user-img" :src="getImageUrl('not_login.jpg')" />
-    <div class="user-text">登录/注册</div>
+    <div class="user-text">
+      {{ $t('user.login') }}/{{ $t('user.register') }}
+    </div>
   </div>
   <myCv></myCv>
   <langSelect></langSelect>
