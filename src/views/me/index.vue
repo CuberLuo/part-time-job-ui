@@ -1,9 +1,11 @@
 <template>
   <div class="user-box">
     <van-image round class="user-img" :src="getImageUrl('not_login.jpg')" />
-    <div class="user-text">
-      {{ $t('user.login') }}/{{ $t('user.register') }}
-    </div>
+    <router-link to="/register">
+      <div class="user-text">
+        {{ $t('user.login') }}/{{ $t('user.register') }}
+      </div>
+    </router-link>
   </div>
   <myCv></myCv>
   <langSelect></langSelect>
@@ -40,5 +42,9 @@ const getImageUrl = (name) => {
   font-size: 26px;
   font-weight: 700;
   vertical-align: middle;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
