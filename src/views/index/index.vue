@@ -1,7 +1,4 @@
 <template>
-  <div>
-    <h1>&ensp;首页</h1>
-  </div>
   <bannerShow></bannerShow>
   <div id="main"></div>
 </template>

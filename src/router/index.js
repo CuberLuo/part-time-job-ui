@@ -3,17 +3,20 @@ import { $t } from '@/i18n'
 const routes = [
   {
     path: '/register',
-    meta: { title: $t('user.register') },
+    // meta: { title: $t('user.register') },
+    meta: { title: ' ' },
     component: () => import('@/views/register/index.vue')
   },
   {
     path: '/login',
-    meta: { title: $t('user.login') },
+    // meta: { title: $t('user.login') },
+    meta: { title: ' ' },
     component: () => import('@/views/login/index.vue')
   },
   {
     path: '/cv',
-    meta: { title: $t('user.myCv') },
+    // meta: { title: $t('user.myCv') },
+    meta: { title: ' ' },
     component: () => import('@/views/cv/index.vue')
   },
   {

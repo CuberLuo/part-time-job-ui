@@ -1,6 +1,5 @@
 <template>
-  <NavBar></NavBar>
-  <div>我的简历</div>
+  <NavBar :title="$t('user.myCv')"></NavBar>
 </template>
 
 <script setup>
