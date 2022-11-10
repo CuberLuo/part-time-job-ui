@@ -22,6 +22,7 @@ export default {
     cvRate: '简历评分',
     cvTips1: '完善简历，',
     cvTips2: '录取率更高!',
+    uploadPhoto: '照片上传',
     personalInfo: '个人信息',
     eduExp: '教育经历',
     skillCert: '技能证书',

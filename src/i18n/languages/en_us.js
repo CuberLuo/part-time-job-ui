@@ -22,6 +22,7 @@ export default {
     cvRate: 'resume rate',
     cvTips1: 'Perfect resume, ',
     cvTips2: 'higher acceptance rate!',
+    uploadPhoto: 'upload photo',
     personalInfo: 'personal information',
     eduExp: 'education experience',
     skillCert: 'skill certificate',
