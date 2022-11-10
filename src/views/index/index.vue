@@ -1,4 +1,5 @@
 <template>
+  <h1 >&ensp;{{$t('tabbar.index')}}</h1>
   <bannerShow></bannerShow>
   <div id="main"></div>
 </template>
@@ -87,5 +88,8 @@ onMounted(() => {
 #main {
   height: 300px;
   margin: 0 auto;
+}
+h1 {
+  color: rgb(119, 146, 244);
 }
 </style>

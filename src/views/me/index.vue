@@ -1,7 +1,7 @@
 <template>
   <div class="user-box">
     <van-image round class="user-img" :src="getImageUrl('not_login.jpg')" />
-    <router-link to="/register">
+    <router-link to="/login">
       <div class="user-text">
         {{ $t('user.login') }}/{{ $t('user.register') }}
       </div>

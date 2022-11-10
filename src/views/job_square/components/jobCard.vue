@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+
 const cards = [
   {
     id: 1,

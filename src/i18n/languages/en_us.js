@@ -30,5 +30,15 @@ export default {
   },
   message: {
     official: 'official'
+  },
+  formText: {
+    username: 'Username',
+    password: 'Password',
+    submit: 'Submit',
+    usernameEmpty: 'Please fill in the Username',
+    passwordEmpty: 'Please fill in the Password'
+  },
+  link: {
+    toRegister: 'Not registered yet? Go to register'
   }
 }

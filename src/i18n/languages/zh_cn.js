@@ -30,5 +30,15 @@ export default {
   },
   message: {
     official: '官方'
+  },
+  formText: {
+    username: '用户名',
+    password: '密码',
+    submit: '提交',
+    usernameEmpty: '请填写用户名',
+    passwordEmpty: '请填写密码'
+  },
+  link: {
+    toRegister: '还未注册？ 去注册'
   }
 }
