@@ -1,6 +1,7 @@
 <template>
   <van-config-provider :theme="theme">
     <router-view />
+    <div style="height: 5rem;"></div>
   </van-config-provider>
 </template>
 

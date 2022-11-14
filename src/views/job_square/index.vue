@@ -2,6 +2,12 @@
   <div class="top">
     <h1>&ensp;{{$t('tabbar.job_square')}}</h1>
   </div>
+  <van-search
+    v-model="value"
+    shape="round"
+    placeholder="请输入搜索关键词"
+    label="西湖区"
+  />
   <van-tabs v-model:active="active">
     <van-tab
       v-for="(label, key) in category"
@@ -27,7 +33,9 @@
             </van-tag>
           </template>
           <template #footer>
-            <van-button size="mini">立即报名</van-button>
+            <div>
+              <van-button size="mini">立即报名</van-button>
+            </div>
           </template>
         </van-card>
     </div>
@@ -38,6 +46,8 @@
 <script setup>
 import JobCard from './components/JobCard.vue'
 import { ref } from 'vue'
+const value = ref()
+const active = ref()
 const category = [
   '推荐',
   '在家做',
