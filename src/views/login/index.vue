@@ -20,7 +20,7 @@
     />
   </van-cell-group>
   <div style="margin: 16px;">
-    <van-button round block type="primary" native-type="submit" class="button">
+    <van-button round block type="primary" native-type="submit" class="button" >
       {{$t('formText.submit')}}
     </van-button>
   </div>
@@ -31,7 +31,20 @@
 
 </template>
 
-<script setup></script>
+<script setup>
+  import { ref } from 'vue'
+  import { userInfoStore } from '@/store/userInfo.js'
+  import { useRouter } from 'vue-router'
+  const store = userInfoStore()
+  const router = useRouter()
+  const username = ref('')
+  const password = ref('')
+  const onSubmit = (values) => {
+      const userInfo = ref({ userName: username, passWord: password })
+      store.setUserInfo(userInfo)
+      router.push('/')
+  }
+</script>
 
 <style scoped>
 .button{
