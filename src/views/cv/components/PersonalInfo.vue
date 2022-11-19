@@ -3,7 +3,9 @@
     <van-cell center>
       <template #title>
         <span>{{ $t('cvPage.personalInfo') }}</span>
-        <van-tag plain type="danger">{{ $t('cvPage.missing') }}</van-tag>
+        <template v-if="realName === '' || checked === '' || result === ''">
+          <van-tag plain type="danger">{{ $t('cvPage.missing') }}</van-tag>
+        </template>
       </template>
       <template #right-icon>
         <van-icon name="add-o" @click="openActionSheet" />
@@ -20,14 +22,14 @@
         <van-field
           v-model="realName"
           name="realName"
-          label="姓名"
-          placeholder="姓名"
+          :label="$t('cvPage.name')"
+          :placeholder="$t('cvPage.name')"
         />
-        <van-field name="gender" label="性别">
+        <van-field name="gender" :label="$t('cvPage.gender')">
           <template #input>
             <van-radio-group v-model="checked" direction="horizontal">
-              <van-radio name="male">男</van-radio>
-              <van-radio name="female">女</van-radio>
+              <van-radio name="male">{{ $t('cvPage.male') }}</van-radio>
+              <van-radio name="female">{{ $t('cvPage.female') }}</van-radio>
             </van-radio-group>
           </template>
         </van-field>
@@ -36,8 +38,8 @@
           is-link
           readonly
           name="birthday"
-          label="生日"
-          placeholder="点击选择生日"
+          :label="$t('cvPage.birthday')"
+          :placeholder="$t('cvPage.birthday_tip')"
           @click="showPicker = true"
         />
         <van-popup v-model:show="showPicker" position="bottom">
@@ -52,7 +54,7 @@
       </van-cell-group>
       <div style="margin: 16px">
         <van-button round block type="primary" native-type="submit">
-          保存
+          {{ $t('cvPage.save') }}
         </van-button>
       </div>
     </van-form>
@@ -62,24 +64,28 @@
 <script setup>
 import { ref } from 'vue'
 import { setItem, getItem } from '@/utils/storage'
+import { showSuccessToast } from 'vant'
+import 'vant/es/toast/style'
+import { $t } from '@/i18n'
 
 const currentDate = ref(['2001', '01', '01'])
 const openActionSheet = () => {
   show.value = true
 }
 const show = ref(false)
-const realName = ref('')
+const realName = ref(getItem('personal_info').realName || '')
 const onSubmit = (values) => {
-  console.log('submit', values)
+  showSuccessToast($t('cvPage.save_feedback'))
   setItem('personal_info', values)
+  show.value = false
 }
-const result = ref('')
+const result = ref(getItem('personal_info').birthday || '')
 const showPicker = ref(false)
 const onConfirm = ({ selectedValues }) => {
   result.value = selectedValues.join('/')
   showPicker.value = false
 }
-const checked = ref('')
+const checked = ref(getItem('personal_info').gender || '')
 </script>
 
 <style scoped>

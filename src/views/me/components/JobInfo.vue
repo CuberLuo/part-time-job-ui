@@ -3,19 +3,19 @@
     <van-grid>
       <van-grid-item>
         <span class="info-number">0</span>
-        <span class="info-text">全部报名</span>
+        <span class="info-text">{{ $t('user.all_reg') }}</span>
       </van-grid-item>
       <van-grid-item>
         <span class="info-number">0</span>
-        <span class="info-text">待录取</span>
+        <span class="info-text">{{ $t('user.to_be_acc') }}</span>
       </van-grid-item>
       <van-grid-item>
         <span class="info-number">0</span>
-        <span class="info-text">已录取</span>
+        <span class="info-text">{{ $t('user.acc') }}</span>
       </van-grid-item>
       <van-grid-item>
         <span class="info-number">0</span>
-        <span class="info-text">已结束</span>
+        <span class="info-text">{{ $t('user.fin') }}</span>
       </van-grid-item>
     </van-grid>
   </van-cell-group>
@@ -37,6 +37,7 @@
   color: white;
 }
 .info-text {
+  text-align: center;
   font-size: 12px;
   color: #50596a;
 }

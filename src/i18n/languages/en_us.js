@@ -5,7 +5,15 @@ export default {
     language: 'Language',
     themeMode: 'Theme Mode',
     myCv: 'My curriculum vitae',
-    myCollect: 'My collect'
+    myCollect: 'My collect',
+    all_reg: 'All Registration',
+    to_be_acc: 'To be accepted',
+    acc: 'Accepted',
+    fin: 'Finished'
+  },
+  chart: {
+    m_increase: 'Monthly cumulative increase',
+    total_nums: 'Total number of part-time jobs'
   },
   tabbar: {
     index: 'Home',
@@ -27,7 +35,29 @@ export default {
     eduExp: 'education experience',
     skillCert: 'skill certificate',
     contactInfo: 'contact information',
-    missing: 'missing'
+    missing: 'missing',
+    name: 'Name',
+    gender: 'Gender',
+    male: 'Male',
+    female: 'Female',
+    birthday: 'Birthday',
+    birthday_tip: 'Click to select birthday',
+    save: 'Save',
+    save_feedback: 'Save successfully!',
+    edu_bg: 'Education background',
+    edu_bg_tip: 'Click to select education background',
+    doctor: 'Doctor',
+    master: 'Master',
+    bachelor: 'Bachelor',
+    jun_college: 'Junior college',
+    hi_school: 'High school/vocational school',
+    other: 'Others',
+    school: 'School',
+    school_tip: 'Please fill in your school of graduation',
+    phone: 'Phone',
+    phone_tip: 'Please fill in your phone number',
+    email: 'Email',
+    email_tip: 'Please fill in your email'
   },
   message: {
     official: 'official'

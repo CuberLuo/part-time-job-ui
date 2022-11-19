@@ -5,7 +5,15 @@ export default {
     language: '语言',
     themeMode: '主题模式',
     myCv: '我的简历',
-    myCollect: '我的收藏'
+    myCollect: '我的收藏',
+    all_reg: '全部报名',
+    to_be_acc: '待录取',
+    acc: '已录取',
+    fin: '已结束'
+  },
+  chart: {
+    m_increase: '月累计新增',
+    total_nums: '总兼职岗位数'
   },
   tabbar: {
     index: '首页',
@@ -27,7 +35,29 @@ export default {
     eduExp: '教育经历',
     skillCert: '技能证书',
     contactInfo: '联系方式',
-    missing: '缺失'
+    missing: '缺失',
+    name: '姓名',
+    gender: '性别',
+    male: '男',
+    female: '女',
+    birthday: '生日',
+    birthday_tip: '点击选择生日',
+    save: '保存',
+    save_feedback: '保存成功!',
+    edu_bg: '学历',
+    edu_bg_tip: '点击选择学历',
+    doctor: '博士',
+    master: '硕士',
+    bachelor: '本科',
+    jun_college: '专科',
+    hi_school: '高中/职高',
+    other: '其他',
+    school: '学校',
+    school_tip: '请填写您的毕业学校',
+    phone: '手机',
+    phone_tip: '请填写您的手机号',
+    email: '邮箱',
+    email_tip: '请填写您的邮箱地址'
   },
   message: {
     official: '官方'

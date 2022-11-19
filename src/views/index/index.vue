@@ -1,5 +1,5 @@
 <template>
-  <h1 >&ensp;{{$t('tabbar.index')}}</h1>
+  <h1>&ensp;{{ $t('tabbar.index') }}</h1>
   <bannerShow></bannerShow>
   <div id="main"></div>
 </template>
@@ -17,6 +17,7 @@ import {
 import { BarChart, LineChart } from 'echarts/charts'
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
+import { $t } from '@/i18n'
 
 onMounted(() => {
   echarts.use([

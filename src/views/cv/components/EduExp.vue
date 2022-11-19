@@ -2,7 +2,9 @@
   <van-cell center>
     <template #title>
       <span>{{ $t('cvPage.eduExp') }}</span>
-      <van-tag plain type="danger">{{ $t('cvPage.missing') }}</van-tag>
+      <template v-if="school === '' || result === ''">
+        <van-tag plain type="danger">{{ $t('cvPage.missing') }}</van-tag>
+      </template>
     </template>
     <template #right-icon>
       <van-icon name="add-o" @click="openActionSheet" />
@@ -19,9 +21,9 @@
           v-model="result"
           is-link
           readonly
-          name="picker"
-          label="学历"
-          placeholder="点击选择学历"
+          name="edu_bg"
+          :label="$t('cvPage.edu_bg')"
+          :placeholder="$t('cvPage.edu_bg_tip')"
           @click="showPicker = true"
         />
         <van-popup v-model:show="showPicker" position="bottom">
@@ -35,13 +37,13 @@
         <van-field
           v-model="school"
           name="school"
-          label="学校"
-          placeholder="请填写您的毕业学校"
+          :label="$t('cvPage.school')"
+          :placeholder="$t('cvPage.school_tip')"
         />
       </van-cell-group>
       <div style="margin: 16px">
         <van-button round block type="primary" native-type="submit">
-          保存
+          {{ $t('cvPage.save') }}
         </van-button>
       </div>
     </van-form>
@@ -50,24 +52,34 @@
 
 <script setup>
 import { ref } from 'vue'
+import { setItem, getItem } from '@/utils/storage'
+import { showSuccessToast } from 'vant'
+import 'vant/es/toast/style'
+import { $t } from '@/i18n'
 const openActionSheet = () => {
   show.value = true
 }
 const show = ref(false)
-const result = ref('')
+const school = ref(getItem('edu_exp').school || '')
+const result = ref(getItem('edu_exp').edu_bg || '')
 const showPicker = ref(false)
 const columns = [
-  { text: '博士', value: '1' },
-  { text: '硕士', value: '2' },
-  { text: '本科', value: '3' },
-  { text: '专科', value: '4' },
-  { text: '高中/职高/技校', value: '5' },
-  { text: '其他', value: '6' }
+  { text: $t('cvPage.doctor'), value: '1' },
+  { text: $t('cvPage.master'), value: '2' },
+  { text: $t('cvPage.bachelor'), value: '3' },
+  { text: $t('cvPage.jun_college'), value: '4' },
+  { text: $t('cvPage.hi_school'), value: '5' },
+  { text: $t('cvPage.other'), value: '6' }
 ]
 
 const onConfirm = ({ selectedOptions }) => {
   result.value = selectedOptions[0].text
   showPicker.value = false
+}
+const onSubmit = (values) => {
+  showSuccessToast($t('cvPage.save_feedback'))
+  setItem('edu_exp', values)
+  show.value = false
 }
 </script>
 
