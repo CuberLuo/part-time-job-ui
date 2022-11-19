@@ -23,7 +23,7 @@
           label="姓名"
           placeholder="姓名"
         />
-        <van-field name="radio" label="性别">
+        <van-field name="gender" label="性别">
           <template #input>
             <van-radio-group v-model="checked" direction="horizontal">
               <van-radio name="male">男</van-radio>
@@ -35,7 +35,7 @@
           v-model="result"
           is-link
           readonly
-          name="datePicker"
+          name="birthday"
           label="生日"
           placeholder="点击选择生日"
           @click="showPicker = true"
@@ -61,6 +61,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { setItem, getItem } from '@/utils/storage'
+
 const currentDate = ref(['2001', '01', '01'])
 const openActionSheet = () => {
   show.value = true
@@ -69,6 +71,7 @@ const show = ref(false)
 const realName = ref('')
 const onSubmit = (values) => {
   console.log('submit', values)
+  setItem('personal_info', values)
 }
 const result = ref('')
 const showPicker = ref(false)
