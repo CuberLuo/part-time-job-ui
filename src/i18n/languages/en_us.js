@@ -71,5 +71,8 @@ export default {
   },
   link: {
     toRegister: 'Not registered yet? Go to register'
+  },
+  search: {
+    job_search: 'part-time job search'
   }
 }

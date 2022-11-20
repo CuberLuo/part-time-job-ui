@@ -71,5 +71,8 @@ export default {
   },
   link: {
     toRegister: '还未注册？ 去注册'
+  },
+  search: {
+    job_search: '兼职搜索'
   }
 }

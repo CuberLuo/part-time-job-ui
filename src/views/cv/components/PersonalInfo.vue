@@ -67,6 +67,9 @@ import { setItem, getItem } from '@/utils/storage'
 import { showSuccessToast } from 'vant'
 import 'vant/es/toast/style'
 import { $t } from '@/i18n'
+import { useRateStore } from '@/store/cvRate.js'
+
+const store = useRateStore()
 
 const currentDate = ref(['2001', '01', '01'])
 const openActionSheet = () => {
@@ -74,11 +77,7 @@ const openActionSheet = () => {
 }
 const show = ref(false)
 const realName = ref(getItem('personal_info').realName || '')
-const onSubmit = (values) => {
-  showSuccessToast($t('cvPage.save_feedback'))
-  setItem('personal_info', values)
-  show.value = false
-}
+
 const result = ref(getItem('personal_info').birthday || '')
 const showPicker = ref(false)
 const onConfirm = ({ selectedValues }) => {
@@ -86,6 +85,32 @@ const onConfirm = ({ selectedValues }) => {
   showPicker.value = false
 }
 const checked = ref(getItem('personal_info').gender || '')
+const checkFull = () => {
+  if (realName.value !== '' && result.value !== '' && checked.value !== '') {
+    return true
+  } else {
+    return false
+  }
+}
+const onSubmit = (values) => {
+  let rate = Number(store.rate)
+  const full = getItem('full_personal_info') || 'no'
+  if (checkFull() === true) {
+    setItem('full_personal_info', 'yes')
+  } else {
+    setItem('full_personal_info', 'no')
+  }
+  showSuccessToast($t('cvPage.save_feedback'))
+  setItem('personal_info', values)
+  show.value = false
+  if (full === 'no' && checkFull() === true) {
+    rate += 30
+    store.setRate(rate)
+  } else if (full === 'yes' && checkFull() === false) {
+    rate -= 30
+    store.setRate(rate)
+  }
+}
 </script>
 
 <style scoped>

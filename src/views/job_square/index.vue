@@ -1,28 +1,30 @@
 <template>
   <div class="top">
-    <h1>&ensp;{{$t('tabbar.job_square')}}</h1>
+    <h1>&ensp;{{ $t('tabbar.job_square') }}</h1>
   </div>
   <van-search
     v-model="value"
     shape="round"
     placeholder="请输入搜索关键词"
     label="西湖区"
+    @click="router.push('/job_search')"
   />
   <van-tabs v-model:active="active">
-    <van-tab
-      v-for="(label, key) in category"
-      :key="key"
-      :title="label"
-    >
+    <van-tab v-for="(label, key) in category" :key="key" :title="label">
       <div class="mycards">
         <van-card
           v-for="card in cards"
           :key="card.id"
           :price="card.price"
           currency=""
-          :title="card.content"
           v-show="card.category == key"
         >
+          <template #title>
+            <div class="title-container">
+              <div class="card-title">{{ card.content }}</div>
+              <div class="star-icon"><van-icon name="star-o" /></div>
+            </div>
+          </template>
           <template #tags>
             <van-tag
               v-for="(label, index) in card.labels"
@@ -38,14 +40,14 @@
             </div>
           </template>
         </van-card>
-    </div>
+      </div>
     </van-tab>
   </van-tabs>
 </template>
 
 <script setup>
-import JobCard from './components/JobCard.vue'
 import { ref } from 'vue'
+import router from '@/router'
 const value = ref()
 const active = ref()
 const category = [
@@ -143,11 +145,38 @@ const cards = [
     labels: ['额外补贴', '周结']
   }
 ]
-
 </script>
 
 <style scoped>
 h1 {
   color: rgb(119, 146, 244);
+}
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.card-title,
+.star-icon {
+  font-size: 4.8vw;
+  line-height: 8vw;
+  font-weight: var(--van-font-bold);
+}
+</style>
+<style>
+.mycards {
+  box-shadow: inset;
+}
+.van-card {
+  background-color: rgb(119, 146, 244);
+  border-radius: 10px;
+  box-shadow: 10;
+}
+.van-card__title {
+  font-size: 18px;
+  line-height: 30px;
+}
+.van-card__price {
+  color: gold;
+  font-size: 10px;
 }
 </style>
