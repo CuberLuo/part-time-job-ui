@@ -24,7 +24,9 @@ export default {
   dialog: {
     confirmDelete: 'Are you sure you want to delete it?',
     confirm: 'Confirm',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    warn: 'Warn',
+    warn_content: 'Are you sure you want to clear your curriculum vitae?'
   },
   cvPage: {
     cvRate: 'resume rate',
@@ -57,7 +59,8 @@ export default {
     phone: 'Phone',
     phone_tip: 'Please fill in your phone number',
     email: 'Email',
-    email_tip: 'Please fill in your email'
+    email_tip: 'Please fill in your email',
+    clear_cv: 'Clear curriculum vitae'
   },
   message: {
     official: 'official'

@@ -24,7 +24,9 @@ export default {
   dialog: {
     confirmDelete: '确定删除吗？',
     confirm: '确认',
-    cancel: '取消'
+    cancel: '取消',
+    warn: '警告',
+    warn_content: '您确认要清空简历吗?'
   },
   cvPage: {
     cvRate: '简历评分',
@@ -57,7 +59,8 @@ export default {
     phone: '手机',
     phone_tip: '请填写您的手机号',
     email: '邮箱',
-    email_tip: '请填写您的邮箱地址'
+    email_tip: '请填写您的邮箱地址',
+    clear_cv: '清空简历'
   },
   message: {
     official: '官方'

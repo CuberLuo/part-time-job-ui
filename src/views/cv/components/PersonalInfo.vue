@@ -49,7 +49,10 @@
             :max-date="new Date(2010, 1, 1)"
             @confirm="onConfirm"
             @cancel="showPicker = false"
-          />
+          >
+            <template #confirm> {{ $t('dialog.confirm') }} </template>
+            <template #cancel> {{ $t('dialog.cancel') }} </template>
+          </van-date-picker>
         </van-popup>
       </van-cell-group>
       <div style="margin: 16px">

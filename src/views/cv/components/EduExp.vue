@@ -31,7 +31,10 @@
             :columns="columns"
             @confirm="onConfirm"
             @cancel="showPicker = false"
-          />
+          >
+            <template #confirm> {{ $t('dialog.confirm') }} </template>
+            <template #cancel> {{ $t('dialog.cancel') }} </template>
+          </van-picker>
         </van-popup>
 
         <van-field
