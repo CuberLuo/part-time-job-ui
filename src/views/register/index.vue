@@ -29,6 +29,9 @@
 
 <script setup>
 import NavBar from '@/components/NavBar.vue'
+import { ref } from 'vue'
+const username = ref('')
+const password = ref('')
 </script>
 
 <style scoped>

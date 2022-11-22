@@ -40,7 +40,7 @@
   const username = ref('')
   const password = ref('')
   const onSubmit = (values) => {
-      const userInfo = ref({ userName: username, passWord: password })
+      const userInfo = { userName: username.value, passWord: password.value }
       store.setUserInfo(userInfo)
       router.push('/')
   }

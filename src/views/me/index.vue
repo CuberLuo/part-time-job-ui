@@ -36,8 +36,8 @@ const passWord = ref()
 const showLogout = ref()
 if (getItem('userInfo')) {
   userInfo.value = getItem('userInfo')
-  userName.value = userInfo.value._value.userName
-  passWord.value = userInfo.value._value.passWord
+  userName.value = userInfo.value.userName
+  passWord.value = userInfo.value.passWord
 }
 const showText = ref(true)
 const showUserInfo = ref(false)
@@ -72,6 +72,14 @@ const logout = (values) => {
   vertical-align: middle;
 }
 .user-text {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.user-info {
   display: inline-block;
   margin-left: 15px;
   margin-top: 28px;

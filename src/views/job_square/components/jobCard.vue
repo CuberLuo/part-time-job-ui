@@ -54,6 +54,9 @@ const cards = [
   background-color: rgb(119, 146, 244);
   border-radius: 10px;
   box-shadow: 10;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 5px;
 }
 .van-card__title {
   font-size: 18px;
