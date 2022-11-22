@@ -2,19 +2,19 @@
   <van-cell-group inset class="cell-group">
     <van-grid>
       <van-grid-item @click="goToInfo(1)">
-        <span class="info-number">0</span>
+        <span class="info-number">10</span>
         <span class="info-text">{{ $t('user.all_reg') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(2)">
-        <span class="info-number">0</span>
+        <span class="info-number">4</span>
         <span class="info-text">{{ $t('user.to_be_acc') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(3)">
-        <span class="info-number">0</span>
+        <span class="info-number">3</span>
         <span class="info-text">{{ $t('user.acc') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(4)">
-        <span class="info-number">0</span>
+        <span class="info-number">3</span>
         <span class="info-text">{{ $t('user.fin') }}</span>
       </van-grid-item>
     </van-grid>
