@@ -1,22 +1,36 @@
 <template>
   <div class="user-box">
-    <van-image round class="user-img" :src="getImageUrl('not_login.jpg')" />
+    <van-image
+      round
+      class="user-img"
+      :src="
+        !isLogin ? getImageUrl('not_login.jpg') : getImageUrl('is_login.jpg')
+      "
+    />
     <router-link to="/login">
       <div class="user-text" v-show="showText">
         {{ $t('user.login') }}/{{ $t('user.register') }}
       </div>
     </router-link>
     <div class="user-info" v-show="showUserInfo">
-        {{userName}}
+      {{ userName }}
     </div>
   </div>
 
-  <JobInfo></JobInfo>
+  <JobInfo v-show="isLogin"></JobInfo>
+
   <MyCv></MyCv>
   <MyCollect></MyCollect>
   <LangSelect></LangSelect>
   <ThemeMode></ThemeMode>
-  <van-button type="warning" size="large" class="logout" @click="logout" v-show="showLogout">退出登录</van-button>
+  <van-button
+    type="warning"
+    size="large"
+    class="logout"
+    @click="logout"
+    v-show="showLogout"
+    >{{ $t('user.logout') }}</van-button
+  >
 </template>
 
 <script setup>
@@ -25,11 +39,12 @@ import ThemeMode from './components/ThemeMode.vue'
 import MyCv from './components/MyCv.vue'
 import MyCollect from './components/MyCollect.vue'
 import JobInfo from './components/JobInfo.vue'
-import { userInfoStore } from '@/store/userInfo.js'
 import { setItem, getItem } from '@/utils/storage'
+import { userInfoStore } from '@/store/userInfo.js'
 import { ref } from 'vue'
 
 const store = userInfoStore()
+const isLogin = ref(getItem('userInfo') ? true : false)
 const userInfo = ref()
 const userName = ref()
 const passWord = ref()
@@ -50,10 +65,11 @@ const getImageUrl = (name) => {
   return new URL(`../../assets/images/${name}`, import.meta.url).href
 }
 const logout = (values) => {
-  localStorage.removeItem('userInfo')
+  store.removeUserInfo()
   showLogout.value = false
   showText.value = true
   showUserInfo.value = false
+  isLogin.value = false
 }
 </script>
 
@@ -97,6 +113,6 @@ a {
 }
 .logout {
   position: absolute;
-  bottom: 4rem
+  bottom: 4rem;
 }
 </style>
