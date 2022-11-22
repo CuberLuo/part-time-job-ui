@@ -43,7 +43,6 @@
 import { ref } from 'vue'
 import { setItem, getItem } from '@/utils/storage'
 import { showSuccessToast } from 'vant'
-import 'vant/es/toast/style'
 import { $t } from '@/i18n'
 import { useRateStore } from '@/store/cvRate.js'
 

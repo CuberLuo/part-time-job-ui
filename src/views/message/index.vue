@@ -54,7 +54,6 @@
 <script setup>
 import { ref } from 'vue'
 import { showConfirmDialog } from 'vant'
-import 'vant/es/dialog/style'
 import { $t } from '@/i18n'
 const contact = ref([
   {

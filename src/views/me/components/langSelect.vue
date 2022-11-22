@@ -16,7 +16,6 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLanguageStore } from '@/store/language.js'
-import 'vant/es/toast/style'
 import { vantLocales } from '@/i18n'
 
 const show = ref(false)
