@@ -25,8 +25,9 @@ export default {
     confirmDelete: 'Are you sure you want to delete it?',
     confirm: 'Confirm',
     cancel: 'Cancel',
-    warn: 'Warn',
-    warn_content: 'Are you sure you want to clear your curriculum vitae?'
+    warn: 'Warning',
+    warn_content: 'Are you sure you want to clear your curriculum vitae?',
+    confirm_logout: 'Are you sure you want to log out?'
   },
   cvPage: {
     cvRate: 'resume rate',
@@ -77,5 +78,8 @@ export default {
   },
   search: {
     job_search: 'part-time job search'
+  },
+  toast: {
+    success_login: 'Successfully  login'
   }
 }

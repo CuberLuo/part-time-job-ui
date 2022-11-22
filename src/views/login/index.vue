@@ -35,6 +35,8 @@
   import { ref } from 'vue'
   import { userInfoStore } from '@/store/userInfo.js'
   import { useRouter } from 'vue-router'
+  import { showSuccessToast } from 'vant'
+  import { $t } from '@/i18n'
   const store = userInfoStore()
   const router = useRouter()
   const username = ref('')
@@ -43,6 +45,7 @@
       const userInfo = { userName: username.value, passWord: password.value }
       store.setUserInfo(userInfo)
       router.push('/')
+      showSuccessToast($t('toast.success_login'))
   }
 </script>
 

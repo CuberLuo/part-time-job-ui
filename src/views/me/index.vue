@@ -16,7 +16,7 @@
   <MyCollect></MyCollect>
   <LangSelect></LangSelect>
   <ThemeMode></ThemeMode>
-  <van-button type="warning" size="large" class="logout" @click="logout" v-show="showLogout">退出登录</van-button>
+  <van-button type="warning" size="large" class="logout" @click="confirmLogout" v-show="showLogout">退出登录</van-button>
 </template>
 
 <script setup>
@@ -28,6 +28,9 @@ import JobInfo from './components/JobInfo.vue'
 import { userInfoStore } from '@/store/userInfo.js'
 import { setItem, getItem } from '@/utils/storage'
 import { ref } from 'vue'
+import { showConfirmDialog } from 'vant'
+import 'vant/es/dialog/style'
+import { $t } from '@/i18n'
 
 const store = userInfoStore()
 const userInfo = ref()
@@ -49,14 +52,26 @@ if (userName.value) {
 const getImageUrl = (name) => {
   return new URL(`../../assets/images/${name}`, import.meta.url).href
 }
-const logout = (values) => {
+const logout = () => {
   localStorage.removeItem('userInfo')
   showLogout.value = false
   showText.value = true
   showUserInfo.value = false
 }
-</script>
+const confirmLogout = () => {
+  showConfirmDialog({
+  title: $t('dialog.warn'),
+  message:
+    $t('dialog.confirm_logout')
+  })
+  .then(() => {
+    logout()
+  })
+  .catch(() => {
+  })
+}
 
+</script>
 <style scoped>
 .user-box {
   height: 100px;
