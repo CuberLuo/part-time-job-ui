@@ -12,6 +12,16 @@ const routes = [
     component: () => import('@/views/login/index.vue')
   },
   {
+    path: '/info_detail',
+    meta: { title: ' ' },
+    component: () => import('@/views/info_detail/index.vue')
+  },
+  {
+    path: '/job_search',
+    meta: { title: ' ' },
+    component: () => import('@/views/job_search/index.vue')
+  },
+  {
     path: '/cv',
     meta: { title: ' ' },
     component: () => import('@/views/cv/index.vue')

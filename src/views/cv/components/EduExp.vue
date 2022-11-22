@@ -31,7 +31,10 @@
             :columns="columns"
             @confirm="onConfirm"
             @cancel="showPicker = false"
-          />
+          >
+            <template #confirm> {{ $t('dialog.confirm') }} </template>
+            <template #cancel> {{ $t('dialog.cancel') }} </template>
+          </van-picker>
         </van-popup>
 
         <van-field
@@ -56,6 +59,10 @@ import { setItem, getItem } from '@/utils/storage'
 import { showSuccessToast } from 'vant'
 import 'vant/es/toast/style'
 import { $t } from '@/i18n'
+import { useRateStore } from '@/store/cvRate.js'
+
+const store = useRateStore()
+
 const openActionSheet = () => {
   show.value = true
 }
@@ -76,10 +83,31 @@ const onConfirm = ({ selectedOptions }) => {
   result.value = selectedOptions[0].text
   showPicker.value = false
 }
+const checkFull = () => {
+  if (school.value !== '' && result.value !== '') {
+    return true
+  } else {
+    return false
+  }
+}
 const onSubmit = (values) => {
+  let rate = Number(store.rate)
+  const full = getItem('full_edu_exp') || 'no'
+  if (checkFull() === true) {
+    setItem('full_edu_exp', 'yes')
+  } else {
+    setItem('full_edu_exp', 'no')
+  }
   showSuccessToast($t('cvPage.save_feedback'))
   setItem('edu_exp', values)
   show.value = false
+  if (full === 'no' && checkFull() === true) {
+    rate += 20
+    store.setRate(rate)
+  } else if (full === 'yes' && checkFull() === false) {
+    rate -= 20
+    store.setRate(rate)
+  }
 }
 </script>
 

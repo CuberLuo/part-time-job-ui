@@ -45,6 +45,9 @@ import { setItem, getItem } from '@/utils/storage'
 import { showSuccessToast } from 'vant'
 import 'vant/es/toast/style'
 import { $t } from '@/i18n'
+import { useRateStore } from '@/store/cvRate.js'
+
+const store = useRateStore()
 
 const phone = ref(getItem('con_info').phone || '')
 const email = ref(getItem('con_info').email || '')
@@ -52,11 +55,31 @@ const openActionSheet = () => {
   show.value = true
 }
 const show = ref(false)
-
+const checkFull = () => {
+  if (phone.value !== '' && email.value !== '') {
+    return true
+  } else {
+    return false
+  }
+}
 const onSubmit = (values) => {
+  let rate = Number(store.rate)
+  const full = getItem('full_contact_info') || 'no'
+  if (checkFull() === true) {
+    setItem('full_contact_info', 'yes')
+  } else {
+    setItem('full_contact_info', 'no')
+  }
   showSuccessToast($t('cvPage.save_feedback'))
   setItem('con_info', values)
   show.value = false
+  if (full === 'no' && checkFull() === true) {
+    rate += 30
+    store.setRate(rate)
+  } else if (full === 'yes' && checkFull() === false) {
+    rate -= 30
+    store.setRate(rate)
+  }
 }
 </script>
 

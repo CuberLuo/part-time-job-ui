@@ -26,17 +26,25 @@
 <script setup>
 import { ref } from 'vue'
 import { setItem, getItem, removeItem } from '@/utils/storage'
+import { useRateStore } from '@/store/cvRate.js'
+
+const store = useRateStore()
+
 const file = ref([])
 if (getItem('photo')) {
   file.value[0] = getItem('photo')
 }
 const afterRead = (file) => {
-  // 此时可以自行将文件上传至服务器
-  console.log(file)
+  let rate = Number(store.rate)
   setItem('photo', file)
+  rate += 20
+  store.setRate(rate)
 }
 const afterDelete = () => {
+  let rate = Number(store.rate)
   removeItem('photo')
+  rate -= 20
+  store.setRate(rate)
 }
 </script>
 
