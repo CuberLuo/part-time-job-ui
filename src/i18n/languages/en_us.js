@@ -9,7 +9,9 @@ export default {
     all_reg: 'All Registration',
     to_be_acc: 'To be accepted',
     acc: 'Accepted',
-    fin: 'Finished'
+    fin: 'Finished',
+    login_tip: 'Sorry, you are not logged in yet',
+    logout: 'Log out'
   },
   chart: {
     m_increase: 'Monthly cumulative increase',

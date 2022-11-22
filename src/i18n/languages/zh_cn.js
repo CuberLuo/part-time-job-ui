@@ -9,7 +9,9 @@ export default {
     all_reg: '全部报名',
     to_be_acc: '待录取',
     acc: '已录取',
-    fin: '已结束'
+    fin: '已结束',
+    login_tip: '对不起,您尚未登录',
+    logout: '退出登录'
   },
   chart: {
     m_increase: '月累计新增',

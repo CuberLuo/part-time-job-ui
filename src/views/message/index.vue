@@ -5,6 +5,9 @@
       :before-close="beforeClose"
       ref="swipeCell"
       class="swipeCell"
+      v-show="
+        isLogin === true || (isLogin === false && item.official_msg === true)
+      "
     >
       <van-cell center class="contact-cell">
         <template #title>
@@ -52,9 +55,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { showConfirmDialog } from 'vant'
 import { $t } from '@/i18n'
+import { userInfoStore } from '@/store/userInfo.js'
+import { getItem } from '@/utils/storage'
+
+const store = userInfoStore()
+const isLogin = ref(false)
+if (getItem('userInfo')) {
+  isLogin.value = true
+}
+watch(
+  () => store.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
 const contact = ref([
   {
     avatar_src:
@@ -62,7 +81,8 @@ const contact = ref([
     title: '客服小助手',
     detail: '官方客服',
     latest_time: '',
-    msg_num: 1
+    msg_num: 1,
+    official_msg: true
   },
   {
     avatar_src:

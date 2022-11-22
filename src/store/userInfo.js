@@ -1,13 +1,18 @@
 import { defineStore } from 'pinia'
-import { getItem, setItem } from '@/utils/storage'
+import { getItem, setItem, removeItem } from '@/utils/storage'
 export const userInfoStore = defineStore('userInfo', {
   state: () => ({
-    theme: getItem('userInfo')
+    userInfo: getItem('userInfo')
+    // is_login: ''
   }),
   actions: {
     setUserInfo(userInfo) {
       setItem('userInfo', userInfo)
       this.userInfo = userInfo
+    },
+    removeUserInfo() {
+      removeItem('userInfo')
+      this.userInfo = {}
     }
   }
 })

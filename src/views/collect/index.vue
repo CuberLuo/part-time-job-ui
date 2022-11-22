@@ -32,7 +32,6 @@
 import NavBar from '@/components/NavBar.vue'
 import { ref } from 'vue'
 function collect(id) {
-  console.log(id)
   cards.value.at(id - 1).isCollect = 1 - cards.value.at(id - 1).isCollect
 }
 const cards = ref([
