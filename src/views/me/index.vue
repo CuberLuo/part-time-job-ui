@@ -27,7 +27,7 @@
     type="warning"
     size="large"
     class="logout"
-    @click="logout"
+    @click="confirmLogout"
     v-show="showLogout"
     >{{ $t('user.logout') }}</van-button
   >
@@ -42,6 +42,9 @@ import JobInfo from './components/JobInfo.vue'
 import { setItem, getItem } from '@/utils/storage'
 import { userInfoStore } from '@/store/userInfo.js'
 import { ref } from 'vue'
+import { showConfirmDialog } from 'vant'
+import 'vant/es/dialog/style'
+import { $t } from '@/i18n'
 
 const store = userInfoStore()
 const isLogin = ref(getItem('userInfo') ? true : false)
@@ -71,8 +74,20 @@ const logout = (values) => {
   showUserInfo.value = false
   isLogin.value = false
 }
-</script>
+const confirmLogout = () => {
+  showConfirmDialog({
+  title: $t('dialog.warn'),
+  message:
+    $t('dialog.confirm_logout')
+  })
+  .then(() => {
+    logout()
+  })
+  .catch(() => {
+  })
+}
 
+</script>
 <style scoped>
 .user-box {
   height: 100px;

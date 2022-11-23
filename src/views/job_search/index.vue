@@ -5,6 +5,7 @@
     shape="round"
     placeholder="请输入搜索关键词"
     label="西湖区"
+
   />
   <div class="mycards">
     <van-card
@@ -12,7 +13,7 @@
       :key="card.id"
       :price="card.price"
       currency=""
-      v-show="card.content.includes(value) || card.labels.join().includes(value) || card.price.includes(value)"
+      v-show="value && (card.content.includes(value) || card.labels.join().includes(value) || card.price.includes(value))"
     >
     <template #title>
       <div class="title-container">
