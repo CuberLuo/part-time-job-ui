@@ -9,28 +9,40 @@
       :price="card.price"
       currency=""
     >
-    <template #title>
-      <div class="title-container">
-      <div class="card-title">{{ card.content }}</div>
-      <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-      <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <div>
-        <van-button size="mini" @click="signIn">立即报名</van-button>
-      </div>
-    </template>
-  </van-card>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <div
+            class="star-icon"
+            v-show="card.isCollect == 0"
+            @click="collect(card.id)"
+          >
+            <van-icon name="star-o" color="#ffffff" />
+          </div>
+          <div
+            class="star-icon"
+            v-show="card.isCollect == 1"
+            @click="collect(card.id)"
+          >
+            <van-icon name="star" color="#ffeb67" />
+          </div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
+      <template #footer>
+        <div>
+          <van-button size="mini" @click="signIn">立即报名</van-button>
+        </div>
+      </template>
+    </van-card>
   </div>
 </template>
 
@@ -57,15 +69,13 @@ function collect(id) {
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn')
+    message: $t('dialog.confirm_signIn')
   })
-  .then(() => {
-    store.addSignIn()
-    console.log(store.signIn)
-  })
-  .catch(() => {
-  })
+    .then(() => {
+      store.addSignIn()
+      console.log(store.signIn)
+    })
+    .catch(() => {})
 }
 onMounted(() => {
   echarts.use([

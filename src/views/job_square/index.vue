@@ -66,7 +66,7 @@
 import { ref } from 'vue'
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showSuccessToast } from 'vant'
 import { $t } from '@/i18n'
 const value = ref()
 const active = ref()
@@ -79,6 +79,7 @@ function signIn() {
     .then(() => {
       store.addSignIn()
       console.log(store.signIn)
+      showSuccessToast($t('toast.success_signin'))
     })
     .catch(() => {})
 }
