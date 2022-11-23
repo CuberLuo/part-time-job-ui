@@ -8,20 +8,20 @@
       currency=""
       v-show="index == 1 || index == card.status"
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
     </van-card>
   </div>
 </template>
@@ -126,21 +126,38 @@ const cards = [
   box-shadow: inset;
 }
 .van-card {
-  background-color: rgb(119, 146, 244);
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
   border-radius: 10px;
   box-shadow: 10;
   margin-left: 15px;
   margin-right: 15px;
   margin-top: 5px;
 }
+.van-card__title {
+  font-size: 18px;
+  line-height: 30px;
+}
 .van-card__price {
-  color: gold;
+  color: #ff6458;
   font-size: 10px;
 }
-.card-title {
+.card-title,
+.star-icon {
   font-size: 4.8vw;
   line-height: 8vw;
   font-weight: var(--van-font-bold);
 }
-
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.tag {
+  margin-left: 2px;
+}
+.button {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  border: none;
+  font-weight: bold;
+  color: #1a2232;
+}
 </style>

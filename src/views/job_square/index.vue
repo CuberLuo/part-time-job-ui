@@ -44,6 +44,7 @@
           </template>
           <template #tags>
             <van-tag
+              class="tag"
               v-for="(label, index) in card.labels"
               :key="index"
               plain
@@ -53,7 +54,10 @@
           </template>
           <template #footer>
             <div>
-              <van-button size="mini" @click="signIn">立即报名</van-button>
+              <van-button size="mini" class="button">详细信息</van-button>
+              <van-button size="mini" @click="signIn" class="button"
+                >立即报名</van-button
+              >
             </div>
           </template>
         </van-card>
@@ -341,7 +345,7 @@ h1 {
   box-shadow: inset;
 }
 .van-card {
-  background-color: rgb(119, 146, 244);
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
   border-radius: 10px;
   box-shadow: 10;
   margin-left: 15px;
@@ -353,7 +357,7 @@ h1 {
   line-height: 30px;
 }
 .van-card__price {
-  color: gold;
+  color: #ff6458;
   font-size: 10px;
 }
 .card-title,
@@ -365,5 +369,14 @@ h1 {
 .title-container {
   display: flex;
   justify-content: space-between;
+}
+.tag {
+  margin-left: 2px;
+}
+.button {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  border: none;
+  font-weight: bold;
+  color: #1a2232;
 }
 </style>

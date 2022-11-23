@@ -5,7 +5,6 @@
     shape="round"
     placeholder="请输入搜索关键词"
     label="西湖区"
-
   />
   <div class="mycards">
     <van-card
@@ -13,28 +12,37 @@
       :key="card.id"
       :price="card.price"
       currency=""
-      v-show="value && (card.content.includes(value) || card.labels.join().includes(value) || card.price.includes(value))"
+      v-show="
+        value &&
+        (card.content.includes(value) ||
+          card.labels.join().includes(value) ||
+          card.price.includes(value))
+      "
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-          <div class="star-icon"><van-icon name="star-o" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <div>
-        <van-button size="mini">立即报名</van-button>
-      </div>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <div class="star-icon">
+            <van-icon name="star-o" color="#ffffff" />
+          </div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          class="tag"
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
+      <template #footer>
+        <div>
+          <van-button size="mini" class="button">详细信息</van-button>
+          <van-button size="mini" class="button">立即报名</van-button>
+        </div>
+      </template>
     </van-card>
   </div>
 </template>
@@ -185,7 +193,7 @@ const cards = [
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
@@ -282,7 +290,6 @@ const cards = [
     isCollect: 0
   }
 ]
-
 </script>
 
 <style>
@@ -290,7 +297,7 @@ const cards = [
   box-shadow: inset;
 }
 .van-card {
-  background-color: rgb(119, 146, 244);
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
   border-radius: 10px;
   box-shadow: 10;
   margin-left: 15px;
@@ -302,7 +309,7 @@ const cards = [
   line-height: 30px;
 }
 .van-card__price {
-  color: gold;
+  color: #ff6458;
   font-size: 10px;
 }
 .card-title,
@@ -315,5 +322,13 @@ const cards = [
   display: flex;
   justify-content: space-between;
 }
-
+.tag {
+  margin-left: 2px;
+}
+.button {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  border: none;
+  font-weight: bold;
+  color: #1a2232;
+}
 </style>

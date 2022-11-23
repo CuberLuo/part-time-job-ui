@@ -76,17 +76,14 @@ const logout = (values) => {
 }
 const confirmLogout = () => {
   showConfirmDialog({
-  title: $t('dialog.warn'),
-  message:
-    $t('dialog.confirm_logout')
+    title: $t('dialog.warn'),
+    message: $t('dialog.confirm_logout')
   })
-  .then(() => {
-    logout()
-  })
-  .catch(() => {
-  })
+    .then(() => {
+      logout()
+    })
+    .catch(() => {})
 }
-
 </script>
 <style scoped>
 .user-box {

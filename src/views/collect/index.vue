@@ -21,6 +21,7 @@
       </template>
       <template #tags>
         <van-tag
+          class="tag"
           v-for="(label, index) in card.labels"
           :key="index"
           plain
@@ -280,7 +281,7 @@ const cards = ref([
   box-shadow: inset;
 }
 .van-card {
-  background-color: rgb(119, 146, 244);
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
   border-radius: 10px;
   box-shadow: 10;
   margin-left: 15px;
@@ -292,7 +293,7 @@ const cards = ref([
   line-height: 30px;
 }
 .van-card__price {
-  color: gold;
+  color: #ff6458;
   font-size: 10px;
 }
 .card-title,
@@ -304,5 +305,14 @@ const cards = ref([
 .title-container {
   display: flex;
   justify-content: space-between;
+}
+.tag {
+  margin-left: 2px;
+}
+.button {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  border: none;
+  font-weight: bold;
+  color: #1a2232;
 }
 </style>
