@@ -22,8 +22,24 @@
           <template #title>
             <div class="title-container">
               <div class="card-title">{{ card.content }}</div>
-              <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-              <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
+              <template v-if="card.isCollect == 0">
+                <div class="star-icon">
+                  <van-icon
+                    name="star-o"
+                    color="#ffffff"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
+              <template v-else>
+                <div class="star-icon">
+                  <van-icon
+                    name="star"
+                    color="#ffeb67"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
             </div>
           </template>
           <template #tags>
@@ -49,11 +65,10 @@
 <script setup>
 import { ref } from 'vue'
 import router from '@/router'
+import { showConfirmDialog, showLoadingToast } from 'vant'
 const value = ref()
 const active = ref()
-function collect(id) {
-  cards.value.at(id - 1).isCollect = 1 - cards.value.at(id - 1).isCollect
-}
+
 const category = [
   '推荐',
   '在家做',
@@ -200,7 +215,7 @@ const cards = ref([
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
@@ -297,6 +312,9 @@ const cards = ref([
     isCollect: 0
   }
 ])
+const collect = (id) => {
+  cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
+}
 </script>
 
 <style scoped>

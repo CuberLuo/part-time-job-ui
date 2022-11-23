@@ -8,22 +8,26 @@
       currency=""
       v-show="card.isCollect == 1"
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-        <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-        <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <div class="star-icon" v-show="card.isCollect == 0">
+            <van-icon name="star-o" color="#ffffff" @click="collect(card.id)" />
+          </div>
+          <div class="star-icon" v-show="card.isCollect == 1">
+            <van-icon name="star" color="#ffeb67" @click="collect(card.id)" />
+          </div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
     </van-card>
   </div>
 </template>
@@ -33,7 +37,7 @@ import NavBar from '@/components/NavBar.vue'
 import { ref } from 'vue'
 function collect(id) {
   console.log(id)
-  cards.value.at(id - 1).isCollect = 1 - cards.value.at(id - 1).isCollect
+  cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
 }
 const cards = ref([
   {
@@ -172,7 +176,7 @@ const cards = ref([
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
