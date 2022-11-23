@@ -29,7 +29,8 @@ export default {
     cancel: '取消',
     warn: '警告',
     warn_content: '您确认要清空简历吗?',
-    confirm_logout: '您确定要退出登录吗？'
+    confirm_logout: '您确定要退出登录吗？',
+    confirm_signIn: '您确定要报名吗？'
   },
   cvPage: {
     cvRate: '简历评分',

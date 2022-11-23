@@ -2,7 +2,7 @@
   <van-cell-group inset class="cell-group">
     <van-grid>
       <van-grid-item @click="goToInfo(1)">
-        <span class="info-number">10</span>
+        <span class="info-number" >{{signInNum}}</span>
         <span class="info-text">{{ $t('user.all_reg') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(2)">
@@ -23,6 +23,8 @@
 
 <script setup>
 import router from '@/router'
+import { signInStore } from '@/store/signIn.js'
+import { ref, watch } from 'vue'
 const goToInfo = (index) => {
   router.push({
     path: '/info_detail',
@@ -31,6 +33,15 @@ const goToInfo = (index) => {
     }
   })
 }
+const store = signInStore()
+const signInNum = ref(store.signIn)
+watch(
+  //监听pinia中的rate值的变化
+  () => store.signIn,
+  (val, oldVal) => {
+    signInNum.value = val
+  }
+)
 </script>
 
 <style scoped>

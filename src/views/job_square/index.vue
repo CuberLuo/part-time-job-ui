@@ -37,7 +37,7 @@
           </template>
           <template #footer>
             <div>
-              <van-button size="mini">立即报名</van-button>
+              <van-button size="mini" @click="signIn">立即报名</van-button>
             </div>
           </template>
         </van-card>
@@ -49,10 +49,27 @@
 <script setup>
 import { ref } from 'vue'
 import router from '@/router'
+import { signInStore } from '@/store/signIn.js'
+import { showConfirmDialog } from 'vant'
+import { $t } from '@/i18n'
 const value = ref()
 const active = ref()
+const store = signInStore()
 function collect(id) {
-  cards.value.at(id - 1).isCollect = 1 - cards.value.at(id - 1).isCollect
+  cards.value[id - 1].isCollect = 1 - cards.value.at[id - 1].isCollect
+}
+function signIn() {
+  showConfirmDialog({
+    title: $t('dialog.confirm'),
+  message:
+    $t('dialog.confirm_signIn')
+  })
+  .then(() => {
+    store.addSignIn()
+    console.log(store.signIn)
+  })
+  .catch(() => {
+  })
 }
 const category = [
   '推荐',
