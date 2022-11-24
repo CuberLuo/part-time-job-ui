@@ -4,7 +4,7 @@
     v-model="value"
     shape="round"
     placeholder="请输入搜索关键词"
-    label="西湖区"
+    :label="curCity"
   />
   <div class="mycards">
     <van-card
@@ -22,24 +22,26 @@
       <template #title>
         <div class="title-container">
           <div class="card-title">{{ card.content }}</div>
-          <template v-if="card.isCollect == 0">
-                <div class="star-icon">
-                  <van-icon
-                    name="star-o"
-                    color="#ffffff"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
-              <template v-else>
-                <div class="star-icon">
-                  <van-icon
-                    name="star"
-                    color="#ffeb67"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
+          <template v-if="isLogin">
+            <template v-if="card.isCollect == 0">
+              <div class="star-icon">
+                <van-icon
+                  name="star-o"
+                  color="#ffffff"
+                  @click="collect(card.id)"
+                />
+              </div>
+            </template>
+            <template v-else>
+              <div class="star-icon">
+                <van-icon
+                  name="star"
+                  color="#ffeb67"
+                  @click="collect(card.id)"
+                />
+              </div>
+            </template>
+          </template>
         </div>
       </template>
       <template #tags>
@@ -54,8 +56,10 @@
       </template>
       <template #footer>
         <div>
-          <van-button size="mini" class="button" >详细信息</van-button>
-          <van-button size="mini" class="button" @click="signIn">立即报名</van-button>
+          <van-button size="mini" class="button">详细信息</van-button>
+          <van-button size="mini" class="button" @click="signIn"
+            >立即报名</van-button
+          >
         </div>
       </template>
     </van-card>
@@ -63,10 +67,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { showConfirmDialog } from 'vant'
 import { signInStore } from '@/store/signIn.js'
 import { $t } from '@/i18n'
+import { useRoute } from 'vue-router'
+import { userInfoStore } from '@/store/userInfo.js'
+import { getItem } from '@/utils/storage'
+
+const userStore = userInfoStore()
+const isLogin = ref(getItem('userInfo') ? true : false)
+watch(
+  () => userStore.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
+
+const route = useRoute()
+const curCity = ref(route.query.curCity)
 const value = ref()
 const store = signInStore()
 const searchLabel = (label, index) => {
@@ -78,19 +99,15 @@ const searchLabel = (label, index) => {
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn'),
-  confirmButtonText:
-    $t('dialog.confirm_button'),
-  cancelButtonText:
-    $t('dialog.cancel_button')
+    message: $t('dialog.confirm_signIn'),
+    confirmButtonText: $t('dialog.confirm_button'),
+    cancelButtonText: $t('dialog.cancel_button')
   })
-  .then(() => {
-    store.addSignIn()
-    console.log(store.signIn)
-  })
-  .catch(() => {
-  })
+    .then(() => {
+      store.addSignIn()
+      console.log(store.signIn)
+    })
+    .catch(() => {})
 }
 const cards = ref([
   {

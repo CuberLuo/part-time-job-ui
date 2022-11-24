@@ -6,9 +6,13 @@
     v-model="value"
     shape="round"
     placeholder="请输入搜索关键词"
-    label="西湖区"
-    @click="router.push('/job_search')"
+    :label="curCity"
+    @click="router.push({ path: '/job_search', query: { curCity } })"
   />
+  <span id="info"></span>
+
+  <div id="container"></div>
+
   <van-tabs v-model:active="active">
     <van-tab v-for="(label, key) in category" :key="key" :title="label">
       <div class="mycards">
@@ -69,12 +73,57 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
 import { showConfirmDialog, showSuccessToast, showFailToast } from 'vant'
 import { $t } from '@/i18n'
-import { setItem, getItem } from '@/utils/storage'
+import { userInfoStore } from '@/store/userInfo.js'
+import { getItem } from '@/utils/storage'
+import AMapLoader from '@amap/amap-jsapi-loader'
+const userStore = userInfoStore()
+watch(
+  () => userStore.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
+
+const curCity = ref('')
+AMapLoader.load({
+  key: '61054ff7a821fab2b707a95511b77f82',
+  version: '2.0',
+  plugins: ['AMap.CitySearch']
+})
+  .then((AMap) => {
+    const map = new AMap.Map('container', {
+      zoom: 13
+    })
+    function showCityInfo() {
+      //实例化城市查询类
+      const citysearch = new AMap.CitySearch()
+      //自动获取用户IP，返回当前城市
+      citysearch.getLocalCity(function (status, result) {
+        if (status === 'complete' && result.info === 'OK') {
+          if (result && result.city && result.bounds) {
+            const cityinfo = result.city
+            curCity.value = cityinfo
+            const citybounds = result.bounds
+            //地图显示当前城市
+            map.setBounds(citybounds)
+          }
+        } else {
+          document.getElementById('info').innerHTML = result.info
+        }
+      })
+    }
+    showCityInfo()
+  })
+  .catch((e) => {
+    console.log(e)
+  })
 
 const value = ref()
 const active = ref()
@@ -350,7 +399,15 @@ const collect = (id) => {
 h1 {
   color: rgb(119, 146, 244);
 }
+#container {
+  width: 100%;
+  height: 200px;
+}
 </style>
 <style>
 @import '@/styles/card.css';
+.amap-copyright,
+.amap-logo {
+  display: none !important;
+}
 </style>

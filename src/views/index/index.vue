@@ -54,7 +54,7 @@
 
 <script setup>
 import bannerShow from './components/bannerShow.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import * as echarts from 'echarts/core'
 import { signInStore } from '@/store/signIn.js'
 import {
@@ -68,9 +68,20 @@ import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 import { $t } from '@/i18n'
 import { showConfirmDialog, showSuccessToast, showFailToast } from 'vant'
-import { setItem, getItem } from '@/utils/storage'
+import { getItem } from '@/utils/storage'
+import { userInfoStore } from '@/store/userInfo.js'
+
+const userStore = userInfoStore()
 
 const isLogin = ref(getItem('userInfo') ? true : false)
+watch(
+  () => userStore.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
 const store = signInStore()
 function collect(id) {
   cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
