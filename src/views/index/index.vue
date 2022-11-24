@@ -65,7 +65,7 @@ import { BarChart, LineChart } from 'echarts/charts'
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 import { $t } from '@/i18n'
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showSuccessToast } from 'vant'
 const store = signInStore()
 function collect(id) {
   cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
@@ -73,22 +73,19 @@ function collect(id) {
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn'),
-  confirmButtonText:
-    $t('dialog.confirm_button'),
-  cancelButtonText:
-    $t('dialog.cancel_button')
-  })
-  .then(() => {
-    store.addSignIn()
-    console.log(store.signIn)
-  })
-  .catch(() => {
+    message: $t('dialog.confirm_signIn'),
+    confirmButtonText: $t('dialog.confirm_button'),
+    cancelButtonText: $t('dialog.cancel_button')
   })
     .then(() => {
       store.addSignIn()
       console.log(store.signIn)
+    })
+    .catch(() => {})
+    .then(() => {
+      store.addSignIn()
+      console.log(store.signIn)
+      showSuccessToast($t('toast.success_signin'))
     })
     .catch(() => {})
 }

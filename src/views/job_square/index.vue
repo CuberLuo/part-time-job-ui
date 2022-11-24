@@ -78,18 +78,9 @@ const store = signInStore()
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn'),
-  confirmButtonText:
-    $t('dialog.confirm_button'),
-  cancelButtonText:
-    $t('dialog.cancel_button')
-  })
-  .then(() => {
-    store.addSignIn()
-    console.log(store.signIn)
-  })
-  .catch(() => {
+    message: $t('dialog.confirm_signIn'),
+    confirmButtonText: $t('dialog.confirm_button'),
+    cancelButtonText: $t('dialog.cancel_button')
   })
     .then(() => {
       store.addSignIn()
