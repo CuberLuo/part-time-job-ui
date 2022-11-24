@@ -78,7 +78,11 @@ const confirmLogout = () => {
   showConfirmDialog({
   title: $t('dialog.warn'),
   message:
-    $t('dialog.confirm_logout')
+    $t('dialog.confirm_logout'),
+  confirmButtonText:
+    $t('dialog.confirm_button'),
+  cancelButtonText:
+    $t('dialog.cancel_button')
   })
   .then(() => {
     logout()

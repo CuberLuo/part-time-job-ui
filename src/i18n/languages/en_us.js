@@ -30,7 +30,9 @@ export default {
     warn: 'Warning',
     warn_content: 'Are you sure you want to clear your curriculum vitae?',
     confirm_logout: 'Are you sure you want to log out?',
-    confirm_signIn: 'Are you sure you want to sign in?'
+    confirm_signIn: 'Are you sure you want to sign in?',
+    confirm_button: 'Confirm',
+    cancel_button: 'Cancel'
   },
   cvPage: {
     cvRate: 'resume rate',

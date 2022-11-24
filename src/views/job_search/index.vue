@@ -32,7 +32,7 @@
     </template>
     <template #footer>
       <div>
-        <van-button size="mini">立即报名</van-button>
+        <van-button size="mini" @click="signIn">立即报名</van-button>
       </div>
     </template>
     </van-card>
@@ -41,12 +41,33 @@
 
 <script setup>
 import { ref } from 'vue'
+import { showConfirmDialog } from 'vant'
+import { signInStore } from '@/store/signIn.js'
+import { $t } from '@/i18n'
 const value = ref()
+const store = signInStore()
 const searchLabel = (label, index) => {
   console.log(label)
   console.log(value.value)
   console.log(label.includes(value.value))
   return label.includes(value.value)
+}
+function signIn() {
+  showConfirmDialog({
+    title: $t('dialog.confirm'),
+  message:
+    $t('dialog.confirm_signIn'),
+  confirmButtonText:
+    $t('dialog.confirm_button'),
+  cancelButtonText:
+    $t('dialog.cancel_button')
+  })
+  .then(() => {
+    store.addSignIn()
+    console.log(store.signIn)
+  })
+  .catch(() => {
+  })
 }
 const cards = [
   {
