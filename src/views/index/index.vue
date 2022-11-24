@@ -80,11 +80,6 @@ function signIn() {
     .then(() => {
       store.addSignIn()
       console.log(store.signIn)
-    })
-    .catch(() => {})
-    .then(() => {
-      store.addSignIn()
-      console.log(store.signIn)
       showSuccessToast($t('toast.success_signin'))
     })
     .catch(() => {})
