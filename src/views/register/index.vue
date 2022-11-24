@@ -25,7 +25,7 @@
         block
         type="primary"
         native-type="submit"
-        class="button"
+        class="submit-button"
       >
         {{ $t('formText.submit') }}
       </van-button>
@@ -42,7 +42,7 @@ const onSubmit = () => {}
 </script>
 
 <style scoped>
-.button {
+.submit-button {
   background-color: rgb(119, 146, 244);
 }
 h1 {

@@ -22,23 +22,25 @@
           <template #title>
             <div class="title-container">
               <div class="card-title">{{ card.content }}</div>
-              <template v-if="card.isCollect == 0">
-                <div class="star-icon">
-                  <van-icon
-                    name="star-o"
-                    color="#ffffff"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
-              <template v-else>
-                <div class="star-icon">
-                  <van-icon
-                    name="star"
-                    color="#ffeb67"
-                    @click="collect(card.id)"
-                  />
-                </div>
+              <template v-if="isLogin">
+                <template v-if="card.isCollect == 0">
+                  <div class="star-icon">
+                    <van-icon
+                      name="star-o"
+                      color="#ffffff"
+                      @click="collect(card.id)"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="star-icon">
+                    <van-icon
+                      name="star"
+                      color="#ffeb67"
+                      @click="collect(card.id)"
+                    />
+                  </div>
+                </template>
               </template>
             </div>
           </template>
@@ -70,24 +72,31 @@
 import { ref } from 'vue'
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
-import { showConfirmDialog, showSuccessToast } from 'vant'
+import { showConfirmDialog, showSuccessToast, showFailToast } from 'vant'
 import { $t } from '@/i18n'
+import { setItem, getItem } from '@/utils/storage'
+
 const value = ref()
 const active = ref()
 const store = signInStore()
+const isLogin = ref(getItem('userInfo') ? true : false)
 function signIn() {
-  showConfirmDialog({
-    title: $t('dialog.confirm'),
-    message: $t('dialog.confirm_signIn'),
-    confirmButtonText: $t('dialog.confirm_button'),
-    cancelButtonText: $t('dialog.cancel_button')
-  })
-    .then(() => {
-      store.addSignIn()
-      console.log(store.signIn)
-      showSuccessToast($t('toast.success_signin'))
+  if (!isLogin.value) {
+    showFailToast($t('user.login_tip'))
+  } else {
+    showConfirmDialog({
+      title: $t('dialog.confirm'),
+      message: $t('dialog.confirm_signIn'),
+      confirmButtonText: $t('dialog.confirm_button'),
+      cancelButtonText: $t('dialog.cancel_button')
     })
-    .catch(() => {})
+      .then(() => {
+        store.addSignIn()
+        console.log(store.signIn)
+        showSuccessToast($t('toast.success_signin'))
+      })
+      .catch(() => {})
+  }
 }
 const category = [
   '推荐',
