@@ -85,6 +85,7 @@ export default {
     job_search: '兼职搜索'
   },
   toast: {
-    success_login: '登录成功'
+    success_login: '登录成功',
+    success_signin: '报名成功'
   }
 }

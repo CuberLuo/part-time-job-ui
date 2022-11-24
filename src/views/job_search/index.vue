@@ -5,7 +5,6 @@
     shape="round"
     placeholder="请输入搜索关键词"
     label="西湖区"
-
   />
   <div class="mycards">
     <van-card
@@ -13,28 +12,52 @@
       :key="card.id"
       :price="card.price"
       currency=""
-      v-show="value && (card.content.includes(value) || card.labels.join().includes(value) || card.price.includes(value))"
+      v-show="
+        value &&
+        (card.content.includes(value) ||
+          card.labels.join().includes(value) ||
+          card.price.includes(value))
+      "
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-          <div class="star-icon"><van-icon name="star-o" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <div>
-        <van-button size="mini" @click="signIn">立即报名</van-button>
-      </div>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <template v-if="card.isCollect == 0">
+                <div class="star-icon">
+                  <van-icon
+                    name="star-o"
+                    color="#ffffff"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
+              <template v-else>
+                <div class="star-icon">
+                  <van-icon
+                    name="star"
+                    color="#ffeb67"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          class="tag"
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
+      <template #footer>
+        <div>
+          <van-button size="mini" class="button" >详细信息</van-button>
+          <van-button size="mini" class="button" @click="signIn">立即报名</van-button>
+        </div>
+      </template>
     </van-card>
   </div>
 </template>
@@ -69,7 +92,7 @@ function signIn() {
   .catch(() => {
   })
 }
-const cards = [
+const cards = ref([
   {
     id: 1,
     category: 0,
@@ -206,7 +229,7 @@ const cards = [
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
@@ -302,39 +325,12 @@ const cards = [
     labels: ['额外补贴', '其他'],
     isCollect: 0
   }
-]
-
+])
+const collect = (id) => {
+  cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
+}
 </script>
 
 <style>
-.mycards {
-  box-shadow: inset;
-}
-.van-card {
-  background-color: rgb(119, 146, 244);
-  border-radius: 10px;
-  box-shadow: 10;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-}
-.van-card__title {
-  font-size: 18px;
-  line-height: 30px;
-}
-.van-card__price {
-  color: gold;
-  font-size: 10px;
-}
-.card-title,
-.star-icon {
-  font-size: 4.8vw;
-  line-height: 8vw;
-  font-weight: var(--van-font-bold);
-}
-.title-container {
-  display: flex;
-  justify-content: space-between;
-}
-
+@import '@/styles/card.css';
 </style>

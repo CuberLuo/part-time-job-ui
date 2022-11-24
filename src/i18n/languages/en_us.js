@@ -85,6 +85,7 @@ export default {
     job_search: 'part-time job search'
   },
   toast: {
-    success_login: 'Successfully  login'
+    success_login: 'Successfully  login',
+    success_signin: 'Successfully  sign in'
   }
 }

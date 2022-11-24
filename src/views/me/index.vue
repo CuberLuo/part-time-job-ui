@@ -90,7 +90,6 @@ const confirmLogout = () => {
   .catch(() => {
   })
 }
-
 </script>
 <style scoped>
 .user-box {

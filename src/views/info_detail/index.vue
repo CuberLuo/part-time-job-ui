@@ -8,20 +8,20 @@
       currency=""
       v-show="index == 1 || index == card.status"
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
     </van-card>
   </div>
 </template>
@@ -122,25 +122,5 @@ const cards = [
 </script>
 
 <style>
-.mycards {
-  box-shadow: inset;
-}
-.van-card {
-  background-color: rgb(119, 146, 244);
-  border-radius: 10px;
-  box-shadow: 10;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-}
-.van-card__price {
-  color: gold;
-  font-size: 10px;
-}
-.card-title {
-  font-size: 4.8vw;
-  line-height: 8vw;
-  font-weight: var(--van-font-bold);
-}
-
+@import '@/styles/card.css';
 </style>

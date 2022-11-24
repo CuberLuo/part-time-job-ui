@@ -8,22 +8,27 @@
       currency=""
       v-show="card.isCollect == 1"
     >
-    <template #title>
-      <div class="title-container">
-        <div class="card-title">{{ card.content }}</div>
-        <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-        <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <div class="star-icon" v-show="card.isCollect == 0">
+            <van-icon name="star-o" color="#ffffff" @click="collect(card.id)" />
+          </div>
+          <div class="star-icon" v-show="card.isCollect == 1">
+            <van-icon name="star" color="#ffeb67" @click="collect(card.id)" />
+          </div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          class="tag"
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
     </van-card>
   </div>
 </template>
@@ -32,7 +37,8 @@
 import NavBar from '@/components/NavBar.vue'
 import { ref } from 'vue'
 function collect(id) {
-  cards.value.at(id - 1).isCollect = 1 - cards.value.at(id - 1).isCollect
+  console.log(id)
+  cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
 }
 const cards = ref([
   {
@@ -171,7 +177,7 @@ const cards = ref([
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
@@ -271,33 +277,5 @@ const cards = ref([
 </script>
 
 <style>
-.mycards {
-  box-shadow: inset;
-}
-.van-card {
-  background-color: rgb(119, 146, 244);
-  border-radius: 10px;
-  box-shadow: 10;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-}
-.van-card__title {
-  font-size: 18px;
-  line-height: 30px;
-}
-.van-card__price {
-  color: gold;
-  font-size: 10px;
-}
-.card-title,
-.star-icon {
-  font-size: 4.8vw;
-  line-height: 8vw;
-  font-weight: var(--van-font-bold);
-}
-.title-container {
-  display: flex;
-  justify-content: space-between;
-}
+@import '@/styles/card.css';
 </style>

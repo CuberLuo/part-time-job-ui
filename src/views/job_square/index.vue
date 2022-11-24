@@ -22,12 +22,29 @@
           <template #title>
             <div class="title-container">
               <div class="card-title">{{ card.content }}</div>
-              <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-              <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
+              <template v-if="card.isCollect == 0">
+                <div class="star-icon">
+                  <van-icon
+                    name="star-o"
+                    color="#ffffff"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
+              <template v-else>
+                <div class="star-icon">
+                  <van-icon
+                    name="star"
+                    color="#ffeb67"
+                    @click="collect(card.id)"
+                  />
+                </div>
+              </template>
             </div>
           </template>
           <template #tags>
             <van-tag
+              class="tag"
               v-for="(label, index) in card.labels"
               :key="index"
               plain
@@ -37,7 +54,10 @@
           </template>
           <template #footer>
             <div>
-              <van-button size="mini" @click="signIn">立即报名</van-button>
+              <van-button size="mini" class="button">详细信息</van-button>
+              <van-button size="mini" @click="signIn" class="button"
+                >立即报名</van-button
+              >
             </div>
           </template>
         </van-card>
@@ -50,14 +70,11 @@
 import { ref } from 'vue'
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showSuccessToast } from 'vant'
 import { $t } from '@/i18n'
 const value = ref()
 const active = ref()
 const store = signInStore()
-function collect(id) {
-  cards.value[id - 1].isCollect = 1 - cards.value.at[id - 1].isCollect
-}
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
@@ -74,6 +91,12 @@ function signIn() {
   })
   .catch(() => {
   })
+    .then(() => {
+      store.addSignIn()
+      console.log(store.signIn)
+      showSuccessToast($t('toast.success_signin'))
+    })
+    .catch(() => {})
 }
 const category = [
   '推荐',
@@ -221,7 +244,7 @@ const cards = ref([
     labels: ['额外补贴', '日结'],
     isCollect: 0
   },
-    {
+  {
     id: 18,
     category: 5,
     price: '5000～7000元/月',
@@ -318,6 +341,9 @@ const cards = ref([
     isCollect: 0
   }
 ])
+const collect = (id) => {
+  cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
+}
 </script>
 
 <style scoped>
@@ -326,33 +352,5 @@ h1 {
 }
 </style>
 <style>
-.mycards {
-  box-shadow: inset;
-}
-.van-card {
-  background-color: rgb(119, 146, 244);
-  border-radius: 10px;
-  box-shadow: 10;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-}
-.van-card__title {
-  font-size: 18px;
-  line-height: 30px;
-}
-.van-card__price {
-  color: gold;
-  font-size: 10px;
-}
-.card-title,
-.star-icon {
-  font-size: 4.8vw;
-  line-height: 8vw;
-  font-weight: var(--van-font-bold);
-}
-.title-container {
-  display: flex;
-  justify-content: space-between;
-}
+@import '@/styles/card.css';
 </style>

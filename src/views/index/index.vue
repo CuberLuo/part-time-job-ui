@@ -9,28 +9,44 @@
       :price="card.price"
       currency=""
     >
-    <template #title>
-      <div class="title-container">
-      <div class="card-title">{{ card.content }}</div>
-      <div class="star-icon"  v-show="card.isCollect == 0" @click="collect(card.id)"><van-icon name="star-o"/></div>
-      <div class="star-icon"  v-show="card.isCollect == 1" @click="collect(card.id)"><van-icon name="star" /></div>
-      </div>
-    </template>
-    <template #tags>
-      <van-tag
-        v-for="(label, index) in card.labels"
-        :key="index"
-        plain
-        type="primary"
-      >{{ label }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <div>
-        <van-button size="mini" @click="signIn">立即报名</van-button>
-      </div>
-    </template>
-  </van-card>
+      <template #title>
+        <div class="title-container">
+          <div class="card-title">{{ card.content }}</div>
+          <div
+            class="star-icon"
+            v-show="card.isCollect == 0"
+            @click="collect(card.id)"
+          >
+            <van-icon name="star-o" color="#ffffff" />
+          </div>
+          <div
+            class="star-icon"
+            v-show="card.isCollect == 1"
+            @click="collect(card.id)"
+          >
+            <van-icon name="star" color="#ffeb67" />
+          </div>
+        </div>
+      </template>
+      <template #tags>
+        <van-tag
+          class="tag"
+          v-for="(label, index) in card.labels"
+          :key="index"
+          plain
+          type="primary"
+          >{{ label }}
+        </van-tag>
+      </template>
+      <template #footer>
+        <div>
+          <van-button size="mini" class="button">详细信息</van-button>
+          <van-button size="mini" @click="signIn" class="button"
+            >立即报名</van-button
+          >
+        </div>
+      </template>
+    </van-card>
   </div>
 </template>
 
@@ -70,6 +86,11 @@ function signIn() {
   })
   .catch(() => {
   })
+    .then(() => {
+      store.addSignIn()
+      console.log(store.signIn)
+    })
+    .catch(() => {})
 }
 onMounted(() => {
   echarts.use([
@@ -205,33 +226,5 @@ h1 {
 }
 </style>
 <style>
-.mycards {
-  box-shadow: inset;
-}
-.van-card {
-  background-color: rgb(119, 146, 244);
-  border-radius: 10px;
-  box-shadow: 10;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-}
-.van-card__title {
-  font-size: 18px;
-  line-height: 30px;
-}
-.van-card__price {
-  color: gold;
-  font-size: 10px;
-}
-.card-title,
-.star-icon {
-  font-size: 4.8vw;
-  line-height: 8vw;
-  font-weight: var(--van-font-bold);
-}
-.title-container {
-  display: flex;
-  justify-content: space-between;
-}
+@import '@/styles/card.css';
 </style>
