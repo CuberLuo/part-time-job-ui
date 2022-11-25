@@ -4,7 +4,7 @@
     v-model="value"
     shape="round"
     placeholder="请输入搜索关键词"
-    label="西湖区"
+    :label="curCity"
   />
   <div class="mycards">
     <van-card
@@ -22,24 +22,26 @@
       <template #title>
         <div class="title-container">
           <div class="card-title">{{ card.content }}</div>
-          <template v-if="card.isCollect == 0">
-                <div class="star-icon">
-                  <van-icon
-                    name="star-o"
-                    color="#ffffff"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
-              <template v-else>
-                <div class="star-icon">
-                  <van-icon
-                    name="star"
-                    color="#ffeb67"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
+          <template v-if="isLogin">
+            <template v-if="card.isCollect == 0">
+              <div class="star-icon">
+                <van-icon
+                  name="star-o"
+                  color="#ffffff"
+                  @click="collect(card.id)"
+                />
+              </div>
+            </template>
+            <template v-else>
+              <div class="star-icon">
+                <van-icon
+                  name="star"
+                  color="#ffeb67"
+                  @click="collect(card.id)"
+                />
+              </div>
+            </template>
+          </template>
         </div>
       </template>
       <template #tags>
@@ -54,23 +56,58 @@
       </template>
       <template #footer>
         <div>
-          <van-button size="mini" class="button" >详细信息</van-button>
-          <van-button size="mini" class="button" @click="signIn">立即报名</van-button>
+          <van-button size="mini" @click="showDetailInfo(card.id)" class="button">详细信息</van-button>
+          <van-button size="mini" class="button" @click="signIn"
+            >立即报名</van-button
+          >
         </div>
       </template>
     </van-card>
+    <van-popup
+    v-model:show="showDetail"
+    closeable
+    round
+    position="bottom"
+    :style="{ height: '70%' }" >
+    <van-cell-group inset class="cell-group">
+      <van-cell title="活动名称" :label="detailInfo.content" class="cell" icon="label-o"/>
+      <van-cell title="岗位要求" :label="detailInfo.request" class="cell" icon="user-o"/>
+      <van-cell title="工作内容" :label="detailInfo.detail" class="cell" icon="todo-list-o" style="white-space: pre-wrap"/>
+      <van-cell title="薪资详情" :label="detailInfo.price" class="cell" icon="balance-o"/>
+      <van-cell title="地址" :label="detailInfo.address" class="cell" icon="location-o"/>
+    </van-cell-group>
+  </van-popup>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { showConfirmDialog } from 'vant'
 import { signInStore } from '@/store/signIn.js'
 import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
 import { $t } from '@/i18n'
+import { useRoute } from 'vue-router'
+import { userInfoStore } from '@/store/userInfo.js'
+import { getItem } from '@/utils/storage'
+
+const userStore = userInfoStore()
+const isLogin = ref(getItem('userInfo') ? true : false)
+
+const route = useRoute()
+const curCity = ref(route.query.curCity)
 const value = ref()
 const store = signInStore()
 const store1 = toBeAcceptedStore()
+const detailInfo = ref()
+const showDetail = ref(false)
+watch(
+  () => userStore.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
 const searchLabel = (label, index) => {
   console.log(label)
   console.log(value.value)
@@ -80,29 +117,32 @@ const searchLabel = (label, index) => {
 function signIn() {
   showConfirmDialog({
     title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn'),
-  confirmButtonText:
-    $t('dialog.confirm_button'),
-  cancelButtonText:
-    $t('dialog.cancel_button')
+    message: $t('dialog.confirm_signIn'),
+    confirmButtonText: $t('dialog.confirm_button'),
+    cancelButtonText: $t('dialog.cancel_button')
   })
-  .then(() => {
-    store.addSignIn()
-    store1.addToBeAccepted()
-    console.log(store.signIn)
-  })
-  .catch(() => {
-  })
+    .then(() => {
+      store.addSignIn()
+      store1.addToBeAccepted()
+      console.log(store.signIn)
+    })
+    .catch(() => {})
+}
+function showDetailInfo(id) {
+  showDetail.value = true
+  detailInfo.value = cards.value[id - 1]
 }
 const cards = ref([
-  {
+{
     id: 1,
     category: 0,
     price: '1～300元/天',
     content: '抖音剪辑/需电脑/可日结',
     labels: ['热门推荐', '官方渠道', '额外补贴'],
-    isCollect: 1
+    isCollect: 1,
+    address: '无',
+    request: '能够进行熟练的视频剪辑，年龄不限，有经验者优先',
+    detail: '1、负责制作视频，拍摄后进行后期剪辑，熟悉基本的剪辑软件\r\n2、对整个视频主题、镜头衔接、节奏感、音乐等方面有较好的把握\r\n3、把控视频整体调性，与团队沟通要求，包括拍摄细节、拍摄内容、场地布置等'
   },
   {
     id: 2,
@@ -110,7 +150,10 @@ const cards = ref([
     price: '800~1000元/月',
     content: '问卷调查',
     labels: ['热门推荐', '官方渠道', '额外补贴'],
-    isCollect: 0
+    isCollect: 0,
+    address: '杭州未来科技城国际人才网',
+    request: '根据要求完成问卷、对结果负责',
+    detail: '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
   },
   {
     id: 3,
@@ -118,7 +161,10 @@ const cards = ref([
     price: '800~1000元',
     content: '问卷调查',
     labels: ['热门推荐', '官方渠道', '额外补贴'],
-    isCollect: 1
+    isCollect: 1,
+    address: '杭州未来科技城国际人才网',
+    request: '根据要求完成问卷、对结果负责',
+    detail: '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
   },
   {
     id: 4,

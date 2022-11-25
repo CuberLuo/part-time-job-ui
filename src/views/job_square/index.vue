@@ -6,9 +6,12 @@
     v-model="value"
     shape="round"
     placeholder="请输入搜索关键词"
-    label="西湖区"
-    @click="router.push('/job_search')"
+    :label="curCity"
+    @click="router.push({ path: '/job_search', query: { curCity } })"
   />
+
+  <div id="container"></div>
+
   <van-tabs v-model:active="active">
     <van-tab v-for="(label, key) in category" :key="key" :title="label">
       <div class="mycards">
@@ -22,23 +25,25 @@
           <template #title>
             <div class="title-container">
               <div class="card-title">{{ card.content }}</div>
-              <template v-if="card.isCollect == 0">
-                <div class="star-icon">
-                  <van-icon
-                    name="star-o"
-                    color="#ffffff"
-                    @click="collect(card.id)"
-                  />
-                </div>
-              </template>
-              <template v-else>
-                <div class="star-icon">
-                  <van-icon
-                    name="star"
-                    color="#ffeb67"
-                    @click="collect(card.id)"
-                  />
-                </div>
+              <template v-if="isLogin">
+                <template v-if="card.isCollect == 0">
+                  <div class="star-icon">
+                    <van-icon
+                      name="star-o"
+                      color="#ffffff"
+                      @click="collect(card.id)"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="star-icon">
+                    <van-icon
+                      name="star"
+                      color="#ffeb67"
+                      @click="collect(card.id)"
+                    />
+                  </div>
+                </template>
               </template>
             </div>
           </template>
@@ -81,40 +86,90 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
+
 import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
-import { showConfirmDialog, showSuccessToast } from 'vant'
 import { $t } from '@/i18n'
 import '@/styles/cell.css'
+import { showConfirmDialog, showSuccessToast, showFailToast } from 'vant'
+import { userInfoStore } from '@/store/userInfo.js'
+import { getItem } from '@/utils/storage'
+import AMapLoader from '@amap/amap-jsapi-loader'
 const value = ref()
 const active = ref()
 const store = signInStore()
 const store1 = toBeAcceptedStore()
 const showDetail = ref(false)
 const detailInfo = ref()
-function signIn() {
-  showConfirmDialog({
-    title: $t('dialog.confirm'),
-  message:
-    $t('dialog.confirm_signIn'),
-  confirmButtonText:
-    $t('dialog.confirm_button'),
-  cancelButtonText:
-    $t('dialog.cancel_button')
-  })
-  .then(() => {
-    store.addSignIn()
-    store1.addToBeAccepted()
-    console.log(store.signIn)
-  })
-  .catch(() => {
-  })
-}
 function showDetailInfo(id) {
   showDetail.value = true
   detailInfo.value = cards.value[id - 1]
+}
+const userStore = userInfoStore()
+watch(
+  () => userStore.userInfo,
+  (val, oldVal) => {
+    if (JSON.stringify(val) === '{}') {
+      isLogin.value = false
+    }
+  }
+)
+
+const curCity = ref('未知')
+AMapLoader.load({
+  key: '61054ff7a821fab2b707a95511b77f82',
+  version: '2.0',
+  plugins: ['AMap.CitySearch']
+})
+  .then((AMap) => {
+    const map = new AMap.Map('container', {
+      viewMode: '2D',
+      center: [120.038201, 30.226134],
+      zoom: 13
+    })
+    function showCityInfo() {
+      //实例化城市查询类
+      const citysearch = new AMap.CitySearch()
+      //自动获取用户IP，返回当前城市
+      citysearch.getLocalCity(function (status, result) {
+        if (status === 'complete' && result.info === 'OK') {
+          if (result && result.city && result.bounds) {
+            const cityinfo = result.city
+            curCity.value = cityinfo
+            const citybounds = result.bounds
+            //地图显示当前城市
+            map.setBounds(citybounds)
+          }
+        }
+      })
+    }
+    showCityInfo()
+  })
+  .catch((e) => {
+    console.log(e)
+  })
+
+const isLogin = ref(getItem('userInfo') ? true : false)
+function signIn() {
+  if (!isLogin.value) {
+    showFailToast($t('user.login_tip'))
+  } else {
+    showConfirmDialog({
+      title: $t('dialog.confirm'),
+      message: $t('dialog.confirm_signIn'),
+      confirmButtonText: $t('dialog.confirm_button'),
+      cancelButtonText: $t('dialog.cancel_button')
+    })
+      .then(() => {
+        store.addSignIn()
+        store1.addToBeAccepted()
+        console.log(store.signIn)
+        showSuccessToast($t('toast.success_signin'))
+      })
+      .catch(() => {})
+  }
 }
 const category = [
   '推荐',
@@ -377,7 +432,15 @@ const collect = (id) => {
 h1 {
   color: rgb(119, 146, 244);
 }
+#container {
+  width: 100%;
+  height: 200px;
+}
 </style>
 <style>
 @import '@/styles/card.css';
+.amap-copyright,
+.amap-logo {
+  display: none !important;
+}
 </style>

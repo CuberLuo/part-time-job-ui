@@ -14,4 +14,5 @@ import 'vant/es/image-preview/style'
 const pinia = createPinia()
 const app = createApp(App)
 app.use(router).use(pinia).use(i18n)
+
 app.mount('#app')
