@@ -6,7 +6,7 @@
         <span class="info-text">{{ $t('user.all_reg') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(2)">
-        <span class="info-number">4</span>
+        <span class="info-number">{{toBeAcceptedNum}}</span>
         <span class="info-text">{{ $t('user.to_be_acc') }}</span>
       </van-grid-item>
       <van-grid-item @click="goToInfo(3)">
@@ -24,6 +24,7 @@
 <script setup>
 import router from '@/router'
 import { signInStore } from '@/store/signIn.js'
+import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
 import { ref, watch } from 'vue'
 const goToInfo = (index) => {
   router.push({
@@ -34,12 +35,21 @@ const goToInfo = (index) => {
   })
 }
 const store = signInStore()
+const store1 = toBeAcceptedStore()
 const signInNum = ref(store.signIn)
+const toBeAcceptedNum = ref(store1.toBeAccepted)
 watch(
   //监听pinia中的rate值的变化
   () => store.signIn,
   (val, oldVal) => {
     signInNum.value = val
+  }
+)
+watch(
+  //监听pinia中的rate值的变化
+  () => store1.toBeAccepted,
+  (val, oldVal) => {
+    toBeAcceptedNum.value = val
   }
 )
 </script>

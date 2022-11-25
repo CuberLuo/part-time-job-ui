@@ -66,9 +66,11 @@
 import { ref } from 'vue'
 import { showConfirmDialog } from 'vant'
 import { signInStore } from '@/store/signIn.js'
+import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
 import { $t } from '@/i18n'
 const value = ref()
 const store = signInStore()
+const store1 = toBeAcceptedStore()
 const searchLabel = (label, index) => {
   console.log(label)
   console.log(value.value)
@@ -87,6 +89,7 @@ function signIn() {
   })
   .then(() => {
     store.addSignIn()
+    store1.addToBeAccepted()
     console.log(store.signIn)
   })
   .catch(() => {

@@ -55,6 +55,7 @@ import bannerShow from './components/bannerShow.vue'
 import { onMounted, ref } from 'vue'
 import * as echarts from 'echarts/core'
 import { signInStore } from '@/store/signIn.js'
+import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
 import {
   ToolboxComponent,
   TooltipComponent,
@@ -67,6 +68,7 @@ import { CanvasRenderer } from 'echarts/renderers'
 import { $t } from '@/i18n'
 import { showConfirmDialog } from 'vant'
 const store = signInStore()
+const store1 = toBeAcceptedStore()
 function collect(id) {
   cards.value[id - 1].isCollect = 1 - cards.value[id - 1].isCollect
 }
@@ -82,15 +84,11 @@ function signIn() {
   })
   .then(() => {
     store.addSignIn()
-    console.log(store.signIn)
+    store1.addToBeAccepted()
+    console.log(store1.toBeAccepted)
   })
   .catch(() => {
   })
-    .then(() => {
-      store.addSignIn()
-      console.log(store.signIn)
-    })
-    .catch(() => {})
 }
 onMounted(() => {
   echarts.use([
