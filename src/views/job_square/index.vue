@@ -9,7 +9,6 @@
     :label="curCity"
     @click="router.push({ path: '/job_search', query: { curCity } })"
   />
-  <span id="info"></span>
 
   <div id="container"></div>
 
@@ -91,7 +90,7 @@ watch(
   }
 )
 
-const curCity = ref('')
+const curCity = ref('未知')
 AMapLoader.load({
   key: '61054ff7a821fab2b707a95511b77f82',
   version: '2.0',
@@ -99,6 +98,8 @@ AMapLoader.load({
 })
   .then((AMap) => {
     const map = new AMap.Map('container', {
+      viewMode: '2D',
+      center: [120.038201, 30.226134],
       zoom: 13
     })
     function showCityInfo() {
@@ -114,8 +115,6 @@ AMapLoader.load({
             //地图显示当前城市
             map.setBounds(citybounds)
           }
-        } else {
-          document.getElementById('info').innerHTML = result.info
         }
       })
     }
