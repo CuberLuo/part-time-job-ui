@@ -59,7 +59,12 @@
           </template>
           <template #footer>
             <div>
-              <van-button size="mini" @click="showDetailInfo(card.id)" class="button" >详细信息</van-button>
+              <van-button
+                size="mini"
+                @click="showDetailInfo(card.id)"
+                class="button"
+                >详细信息</van-button
+              >
               <van-button size="mini" @click="signIn" class="button"
                 >立即报名</van-button
               >
@@ -74,13 +79,40 @@
     closeable
     round
     position="bottom"
-    :style="{ height: '70%' }" >
+    :style="{ height: '70%' }"
+  >
     <van-cell-group inset class="cell-group">
-      <van-cell title="活动名称" :label="detailInfo.content" class="cell" icon="label-o"/>
-      <van-cell title="岗位要求" :label="detailInfo.request" class="cell" icon="user-o"/>
-      <van-cell title="工作内容" :label="detailInfo.detail" class="cell" icon="todo-list-o" style="white-space: pre-wrap"/>
-      <van-cell title="薪资详情" :label="detailInfo.price" class="cell" icon="balance-o"/>
-      <van-cell title="地址" :label="detailInfo.address" class="cell" icon="location-o"/>
+      <van-cell
+        title="活动名称"
+        :label="detailInfo.content"
+        class="cell"
+        icon="label-o"
+      />
+      <van-cell
+        title="岗位要求"
+        :label="detailInfo.request"
+        class="cell"
+        icon="user-o"
+      />
+      <van-cell
+        title="工作内容"
+        :label="detailInfo.detail"
+        class="cell"
+        icon="todo-list-o"
+        style="white-space: pre-wrap"
+      />
+      <van-cell
+        title="薪资详情"
+        :label="detailInfo.price"
+        class="cell"
+        icon="balance-o"
+      />
+      <van-cell
+        title="地址"
+        :label="detailInfo.address"
+        class="cell"
+        icon="location-o"
+      />
     </van-cell-group>
   </van-popup>
 </template>
@@ -92,7 +124,6 @@ import { signInStore } from '@/store/signIn.js'
 
 import { toBeAcceptedStore } from '@/store/toBeAccepted.js'
 import { $t } from '@/i18n'
-import '@/styles/cell.css'
 import { showConfirmDialog, showSuccessToast, showFailToast } from 'vant'
 import { userInfoStore } from '@/store/userInfo.js'
 import { getItem } from '@/utils/storage'
@@ -117,7 +148,7 @@ watch(
   }
 )
 
-const curCity = ref('未知')
+const curCity = ref('杭州市')
 AMapLoader.load({
   key: '61054ff7a821fab2b707a95511b77f82',
   version: '2.0',
@@ -190,7 +221,8 @@ const cards = ref([
     isCollect: 1,
     address: '无',
     request: '能够进行熟练的视频剪辑，年龄不限，有经验者优先',
-    detail: '1、负责制作视频，拍摄后进行后期剪辑，熟悉基本的剪辑软件\r\n2、对整个视频主题、镜头衔接、节奏感、音乐等方面有较好的把握\r\n3、把控视频整体调性，与团队沟通要求，包括拍摄细节、拍摄内容、场地布置等'
+    detail:
+      '1、负责制作视频，拍摄后进行后期剪辑，熟悉基本的剪辑软件\r\n2、对整个视频主题、镜头衔接、节奏感、音乐等方面有较好的把握\r\n3、把控视频整体调性，与团队沟通要求，包括拍摄细节、拍摄内容、场地布置等'
   },
   {
     id: 2,
@@ -201,7 +233,8 @@ const cards = ref([
     isCollect: 0,
     address: '杭州未来科技城国际人才网',
     request: '根据要求完成问卷、对结果负责',
-    detail: '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
+    detail:
+      '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
   },
   {
     id: 3,
@@ -212,7 +245,8 @@ const cards = ref([
     isCollect: 1,
     address: '杭州未来科技城国际人才网',
     request: '根据要求完成问卷、对结果负责',
-    detail: '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
+    detail:
+      '1、能够承受较强的工作压力\r\n2、做事认真仔细\r\n3、具有优秀的逻辑思维能力和良好的敬业精神'
   },
   {
     id: 4,

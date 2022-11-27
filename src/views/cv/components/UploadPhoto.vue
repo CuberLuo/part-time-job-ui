@@ -13,8 +13,10 @@
             <van-uploader
               v-model="file"
               @delete="afterDelete"
+              :before-read="beforeRead"
               :after-read="afterRead"
               :max-count="1"
+              :max-size="2 * 1024 * 1024"
             />
           </div>
         </div>
@@ -27,12 +29,21 @@
 import { ref } from 'vue'
 import { setItem, getItem, removeItem } from '@/utils/storage'
 import { useRateStore } from '@/store/cvRate.js'
+import { showToast } from 'vant'
+import { $t } from '@/i18n'
 
 const store = useRateStore()
 
 const file = ref([])
 if (getItem('photo')) {
   file.value[0] = getItem('photo')
+}
+const beforeRead = (file) => {
+  if (file.size > 2 * 1024 * 1024) {
+    showToast($t('toast.file_limit'))
+    return false
+  }
+  return true
 }
 const afterRead = (file) => {
   let rate = Number(store.rate)

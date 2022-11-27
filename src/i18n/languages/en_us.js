@@ -86,6 +86,7 @@ export default {
   },
   toast: {
     success_login: 'Successfully  login',
-    success_signin: 'Successfully  sign in'
+    success_signin: 'Successfully  sign in',
+    file_limit: 'Please keep the photo size below 2MB'
   }
 }

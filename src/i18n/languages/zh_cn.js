@@ -86,6 +86,7 @@ export default {
   },
   toast: {
     success_login: '登录成功',
-    success_signin: '报名成功'
+    success_signin: '报名成功',
+    file_limit: '照片大小请勿超过2MB'
   }
 }
