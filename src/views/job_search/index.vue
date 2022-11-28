@@ -133,7 +133,7 @@ function showDetailInfo(id) {
   detailInfo.value = cards.value[id - 1]
 }
 const cards = ref([
-{
+  {
     id: 1,
     category: 0,
     price: '1～300元/天',
@@ -196,7 +196,10 @@ const cards = ref([
     price: '300元/天',
     content: '招女生打字聊天员 日结',
     labels: ['额外补贴'],
-    isCollect: 0
+    isCollect: 0,
+    address: '线上',
+    request: '限女生，18-28周岁',
+    detail: '1、本岗位需要下载指定APP\r\n2、工作日结，结算到支付宝\r\n3、无押金，无培训费'
   },
   {
     id: 8,
@@ -244,7 +247,10 @@ const cards = ref([
     price: '120～400元/天',
     content: '兼职主持人',
     labels: ['额外补贴', '飘升'],
-    isCollect: 0
+    isCollect: 0,
+    address: '银泰百货（西湖店）',
+    request: '杭州电视台/栏目组招聘，采访小孩子',
+    detail: '1、满18周岁\r\n2、性格外向开朗\r\n3、薪资140+提成'
   },
   {
     id: 14,
@@ -274,9 +280,12 @@ const cards = ref([
     id: 17,
     category: 5,
     price: '1～300元/天',
-    content: '招APP打字聊天元',
+    content: '招APP打字聊天员',
     labels: ['额外补贴', '日结'],
-    isCollect: 0
+    isCollect: 0,
+    address: '线上',
+    request: '在平台和用户聊天',
+    detail: '1、限女生\r\n2、23-25周岁\r\n3、提供培训'
   },
   {
     id: 18,
@@ -308,7 +317,10 @@ const cards = ref([
     price: '300～400元/天',
     content: '急招杭州日结配送',
     labels: ['官方渠道', '简单易做'],
-    isCollect: 0
+    isCollect: 0,
+    address: '浙江省杭州市西湖区人民政府',
+    request: '按照指定的地点配送到位',
+    detail: '1、满18周岁，不超过50周岁\r\n2、踏实肯干，身体健康\r\n3、单价12.5，上不封顶'
   },
   {
     id: 22,
@@ -332,7 +344,10 @@ const cards = ref([
     price: '240元/天',
     content: '招优秀英语翻译文书撰稿人',
     labels: ['热门渠道', '日结'],
-    isCollect: 0
+    isCollect: 0,
+    address: '线上兼职',
+    request: '根据公司的材料，独立进行文书的原创写作',
+    detail: '1、有时间保证、大三以上\r\n2、具有较强的英文写作能力，善于沟通，服从安排\r\n3、英语专业的水平需要达标（6级560分以上）'
   },
   {
     id: 25,
@@ -340,7 +355,10 @@ const cards = ref([
     price: '120～180元/天',
     content: '商场扫单',
     labels: ['热门渠道', '日结'],
-    isCollect: 0
+    isCollect: 0,
+    address: '龙湖杭州西溪天街',
+    request: '教育机构扫码收单，把小礼物给小朋友，家长填写意向信息',
+    detail: '1、满18周岁\r\n2、善于沟通，服从安排\r\n3、'
   },
   {
     id: 26,
@@ -348,7 +366,10 @@ const cards = ref([
     price: '300元/天',
     content: '俄语视频翻译（线上兼职）',
     labels: ['额外补贴', '日结'],
-    isCollect: 1
+    isCollect: 1,
+    address: '线上',
+    request: '翻译关于足球的俄语视频',
+    detail: '1、爱好足球，必须了解足球人物和赛事\r\n2、拒绝机翻，翻译内容准确，拒绝低级失误\r\n3、偏向口语化，需要后期润色'
   },
   {
     id: 27,
@@ -364,7 +385,10 @@ const cards = ref([
     price: '240元/天',
     content: '招优秀英语翻译文书撰稿人',
     labels: ['额外补贴', '日结'],
-    isCollect: 1
+    isCollect: 1,
+    address: '线上兼职',
+    request: '根据公司的材料，独立进行文书的原创写作',
+    detail: '1、有时间保证、大三以上\r\n2、具有较强的英文写作能力，善于沟通，服从安排\r\n3、英语专业的水平需要达标（6级560分以上）'
   },
   {
     id: 29,
@@ -372,7 +396,10 @@ const cards = ref([
     price: '20元/时',
     content: '兼职初级教练（射箭）',
     labels: ['额外补贴', '其他'],
-    isCollect: 0
+    isCollect: 0,
+    address: '龙湖杭州滨江天街',
+    request: '满18周岁，高中及以上',
+    detail: '1、工作认真负责\r\n2、可以带薪培训'
   }
 ])
 const collect = (id) => {
