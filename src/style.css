@@ -17,12 +17,12 @@ html:root {
 .van-cell__value {
   flex: auto;
 }
-
-html {
+/* 为悼念前国家主席逝世,网页主色调改为灰色 */
+/* html {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -o-filter: grayscale(100%);
   filter: grayscale(100%);
   filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
-}
+} */
